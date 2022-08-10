@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CamFollow : MonoBehaviour
 {
-    public GameObject refGameObject;
+    [SerializeField] GameObject refGameObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +19,7 @@ public class CamFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.position = refGameObject.transform.position; 
+        transform.position = refGameObject.transform.position;
+        transform.rotation = refGameObject.transform.rotation; //esto lo puedo evitar de otra forma? con Translate? [] 
     }
 }

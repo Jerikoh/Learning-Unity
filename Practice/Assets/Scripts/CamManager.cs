@@ -6,7 +6,7 @@ using UnityEngine;
 public class CamManager : MonoBehaviour
 {
     bool camType = true;
-    public GameObject[] cameras;
+    [SerializeField] GameObject[] cameras;
     /*int index = 0;
     int indexTraverser = 1;*/
 

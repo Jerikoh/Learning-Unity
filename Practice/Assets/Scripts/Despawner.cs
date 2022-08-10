@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Despawner : MonoBehaviour
 {
-    public float entityLifetime = 5;
+    [SerializeField] float entityLifetime = 5;
 
     // Start is called before the first frame update
     void Start()

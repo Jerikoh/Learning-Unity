@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-    public GameObject[] enemyPrefab;
-    public float spawnDelay = 1f;
-    public float spawnInterval = 1f;
+    [SerializeField] GameObject[] enemyPrefab;
+    [SerializeField] float spawnDelay = 1f;
+    [SerializeField] float spawnInterval = 1f;
 
     // Start is called before the first frame update
     void Start()

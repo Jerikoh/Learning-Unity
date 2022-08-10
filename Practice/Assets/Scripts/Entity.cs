@@ -5,18 +5,18 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     //Variables
-    public string entityName = "Nameless";
-    public int health = 100;
-    public int startDamage = 20;
-    public int startHeal = 20;
+    //[SerializeField] string entityName = "Nameless";
+    [SerializeField] int health = 100;
+    [SerializeField] int startDamage = 20;
+    [SerializeField] int startHeal = 20;
 
     // Start is called before the first frame update
     void Start()
     {
         Damage(startDamage);
-        Debug.Log("Vida tras daño: " + health);
+        //Debug.Log("Vida tras daño: " + health);
         Heal(startHeal);
-        Debug.Log("Vida tras curación: " + health);
+        //Debug.Log("Vida tras curación: " + health);
     }
 
     // Update is called once per frame

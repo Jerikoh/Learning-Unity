@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BasicMovement : MonoBehaviour
 {
-    public float speed = 3f;
-    public string movementDir = "null";
+    [SerializeField] float speed = 3f;
+    [SerializeField] string movementDir = "null";
 
     // Start is called before the first frame update
     void Start()

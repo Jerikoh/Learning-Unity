@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CannonAuto : MonoBehaviour
 {
-    public GameObject projectilePrefab;
-    public float shootDelay = 1f;
-    public float shootInterval = 1f;
+    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] float shootDelay = 1f;
+    [SerializeField] float shootInterval = 1f;
 
     // Start is called before the first frame update
     void Start()

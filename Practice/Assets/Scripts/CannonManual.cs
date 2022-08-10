@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CannonManual : MonoBehaviour
 {
-    public GameObject projectilePrefab;
-    public float specShootInterval = 0.2f;
-    public float cooldown = 0.5f;
-    public float cooldownSpec = 1.2f;
+    [SerializeField]  GameObject projectilePrefab;
+    [SerializeField]  float specShootInterval = 0.2f;
+    [SerializeField]  float cooldown = 0.5f;
+    [SerializeField]  float cooldownSpec = 1.2f;
     bool canShoot = true;
     bool canShootSpec = true;
     int shootRepetitions;
@@ -20,7 +20,7 @@ public class CannonManual : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (Input.GetKey(KeyCode.Space) && canShoot)
         {
@@ -62,19 +62,19 @@ public class CannonManual : MonoBehaviour
 
     void ShootProjectile()
     {
-        Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation); //podemos tomar la rotacion del prefab o del padre, al caso el del prefab proyectil
+        Instantiate(projectilePrefab, transform.position, transform.rotation); //podemos tomar la rotacion del prefab o del padre, al caso el del padre cannon
     }
 
     void ShootSpec()
     {
-        Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation); //podemos tomar la rotacion del prefab o del padre, al caso el del prefab proyectil
+        Instantiate(projectilePrefab, transform.position, transform.rotation);
         if (--shootRepetitions == 0) CancelInvoke("ShootSpec");
     }
 
     void SpecialShoot(int times) // [] no pude evitar que me largue todo junto con invoke y for, hay una forma mas efectiva para hacer esto? como un "repetir cada X tiempo Y veces"
     {
         shootRepetitions = times;
-        InvokeRepeating("ShootSpec", 0, specShootInterval);
+        InvokeRepeating("ShootSpec", 0f, specShootInterval);
     }
 
     void ResetShoot()

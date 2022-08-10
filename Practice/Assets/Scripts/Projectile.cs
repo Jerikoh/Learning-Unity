@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float projSpeed = 8;
-    public int projDmg = 20;
+    [SerializeField] float projSpeed = 8;
+    //[SerializeField] int projDmg = 20;
 
     // Start is called before the first frame update
     void Start()
