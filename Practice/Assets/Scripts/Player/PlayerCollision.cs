@@ -13,6 +13,11 @@ public class PlayerCollision : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        if (other.gameObject.CompareTag("Enemy-projectile")) //consulto el tag del GO colideado
+        {
+            Destroy(other.gameObject);
+            //MEDOTO QUITAR VIDA AL PLAYER ENTITY COMPONENT
+        }
 
     }
     //util para eliminar objetos al tocarlos, con un condicional pero sin usar el nombre, ya veremos como

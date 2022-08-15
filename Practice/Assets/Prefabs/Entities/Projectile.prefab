@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -3872106988903735519}
   m_Layer: 0
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Enemy-projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +114,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &176367472205087579
 MonoBehaviour:
@@ -129,7 +129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projSpeed: 8
-  projDmg: 20
 --- !u!114 &-3872106988903735519
 MonoBehaviour:
   m_ObjectHideFlags: 0
