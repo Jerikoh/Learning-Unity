@@ -1,2 +1,2 @@
 # Learning-Unity
- Some practical exercises involved in my learning process
+ Some exercises involved in my learning process
