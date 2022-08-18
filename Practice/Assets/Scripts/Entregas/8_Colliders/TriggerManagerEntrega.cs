@@ -14,7 +14,7 @@ public class TriggerManagerEntrega : MonoBehaviour
     private void OnTriggerExit(Collider other) //ante el error del "doble trigger" ejecuto el comando con "timer" en un metodo aparte
     {
         collided = other;
-        Invoke("Transformation", 0.05f);
+        Invoke("Transformation", 0.2f);
 
     }
 
@@ -22,11 +22,11 @@ public class TriggerManagerEntrega : MonoBehaviour
     {
         if (transformed == false)
         {
-            collided.transform.localScale -= transform.localScale * 0.5f;
+            collided.transform.localScale -= transform.localScale * 0.7f;
         }
         else if (transformed)
         {
-            collided.transform.localScale += transform.localScale * 0.5f;
+            collided.transform.localScale += transform.localScale * 0.7f;
         }
         transformed = !transformed; //la transformacion sucede aqui, sucedia un inconveniente al ponerlo tras el invoke
     }
