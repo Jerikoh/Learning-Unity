@@ -2,6 +2,7 @@
 
 ### Folder: Practice
 > Sandbox donde se cocinan los ejercicios prácticos y cada instancia del proyecto final
+##
 ### Folder: Desafíos
 > Ejercicios efectuados tras cada nuevo aprendizaje
 ##
