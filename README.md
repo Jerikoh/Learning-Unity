@@ -16,9 +16,9 @@
 //stay
 //quiet
 ```
-+ Tres posibles orientaciones: horror survival, horde survival, pve/pvp shooter.
-+ Inspiraciones posibles: outlast, isolation, re4, dead space -buscar mas scifi/space horror games-, no more room in hell, obscure?, el no-l4d, "el que es como el obscure pero en un barco"...
-+ Escenarios posibles, en principio conceptual: highschool, forest, mansion, city, town...
++ **Tres posibles orientaciones:** horror survival, horde survival, pve/pvp shooter.
++ **Inspiraciones posibles:** outlast, isolation, re4, dead space -buscar mas scifi/space horror games-, no more room in hell, contagion, obscure, cold fear, killing floor, ?.
++ **Escenarios posibles, en principios conceptuales:** highschool, forest, mansion, city, town...
 
 ### To-Do (organize):
 + homogeneizar texturas, ya que serán innecesarias
@@ -38,4 +38,7 @@
 + idem; se podria hacer manual el scanning, que sea como un "overheat", y que puedas manipular la amplitud y velocidad o algo asi en funcion de estos valores?
 //pero MP no serivira al ser desync, o si? pudiendo reaccionar a los disparos sorpresivos del otro? y pudiendo quedarte quieto para ser indetectable?
 + aplicar sistema sonido holofónico //ese era el término?
++ quisiera que cuando la onda deja de pasar por encima de los objetos, sus mesh dejen de renderizarse, así la silueta de los objetos no se ve contra la onda recorriendo aquellos mas allá (?
++ suavizar el movimiento de la cámara
++ ver como quedaría un DOF ?
 ##

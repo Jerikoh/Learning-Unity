@@ -33,7 +33,7 @@ Material:
     - _Mask: 1
     - _MaskHardness: 0.5
     - _MaskPower: 0.9
-    - _MaskRadius: 1
+    - _MaskRadius: 1.3
     - _MultiplyBlend: 1
     - _Power: 0
     - _Speed: 0

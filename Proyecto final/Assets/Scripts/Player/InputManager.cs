@@ -61,7 +61,7 @@ public class InputManager : MonoBehaviour
         Run = context.ReadValueAsButton();
     }
 
-    //esto es para "organizar" el proyecto, no pude comprenderlo mucho
+    //para "organizar" el proyecto y evitar problemas de arquitectura
     void OnDisable() {
         currentMap.Disable();
     }
