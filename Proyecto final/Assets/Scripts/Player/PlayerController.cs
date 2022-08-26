@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     //camera thingz [] dps ver si se puede lograr lo mismo usando cinemachine
     [SerializeField] Transform cameraTarget;
-    [SerializeField] Transform camera;
+    [SerializeField] new Transform camera; //acá agregue el "new" sugerido por advertencia, desactivar ante unexpected errors
     [SerializeField] float upperLimit = -40f;
     [SerializeField] float bottomLimit = 70f;
     [SerializeField] float mouseSensitivity = 20f;

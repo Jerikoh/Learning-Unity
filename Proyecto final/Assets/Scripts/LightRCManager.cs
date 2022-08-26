@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class LightRCManager : MonoBehaviour
 {
-    [SerializeField] Transform originPoint1;
-    [SerializeField] Transform endPoint1;
-    [SerializeField] Transform originPoint2;
-    [SerializeField] Transform endPoint2;
-    [SerializeField] Transform nextLightPosition;
-    Transform actualOriginPoint, actualEndPoint;
+    [SerializeField] Transform originPoint1, endPoint1, originPoint2, endPoint2, nextLightPosition1, nextLightPosition2;
+    Transform actualOriginPoint, actualEndPoint, actualNextPosition;
 
     void Start()
     {
         actualOriginPoint = originPoint1;
         actualEndPoint = endPoint1;
+        actualNextPosition = nextLightPosition1;
     }
 
     void Update()
@@ -27,9 +24,11 @@ public class LightRCManager : MonoBehaviour
         //RaycastHit hitted; //no lo uso al caso, hay otro llamado que no lo cuente? LINECAST
         if (Physics.Linecast(actualOriginPoint.position, actualEndPoint.position))
         {
+            gameObject.transform.position = actualNextPosition.position;
+
             actualOriginPoint = originPoint2;
             actualEndPoint = endPoint2;
-            gameObject.transform.position = nextLightPosition.position;
+            actualNextPosition = nextLightPosition2; //claro esto debería implementarlo en una lista que compare y adelante
         }
     }
 
