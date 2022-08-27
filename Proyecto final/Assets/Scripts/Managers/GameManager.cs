@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour //si no uso nada de monobehaviour, quito la herencia y quiza tenga que poner static a la clase tambien, pero si usa el start para asegurar el singleton... al menos no con los singleton
 {
-    //static int hp; //variable estatica publica! para acceder desde "cualquier lado" de forma directa, sin traer ningun objeto al script; estas no son visibles en el inspector; peero, para evitar posibles "problemas de arquitectura", accederemeos a esta a traves de una propiedad
-    private static int hp, energy, ammo, mags, flares;
-    private static bool[] keys; //luego ver tema de arma actual, armas en posesion, ammo de c/u, otros items
+    private static int health, ammo, mags, flares, keys; //keys deberia desaparecer, por tema dicho abajo, hay una llave para cada puerta o cosa
+    private static float energy;
+    private static bool[] key; //luego ver tema de arma actual, armas en posesion, ammo de c/u, otros items
     public static GameManager instance; //esta var es para asegurarme de que no existe otro elemento GM activo, para lograr el singleton
-    [SerializeField][Range(0.01f,1f)] float energyDrainSpeed = 0.1f; //en realidad debo manejar el valor tras .Radius por completo aca, OJO (.Radius = energy), implementar bien cuando ponga pickups de energy; ya se siente que se van desparramando las funciones sobre variables/propiedades, ej este drain deberia ir en el manejo del scan del player?
-
+    [SerializeField][Range(0.01f, 1f)] float energyDrainSpeed = 0.1f; //en realidad debo manejar el valor tras .Radius por completo aca, OJO (.Radius = energy), implementar bien cuando ponga pickups de energy; ya se siente que se van desparramando las funciones sobre variables/propiedades, ej este drain deberia ir en el manejo del scan del player?
+    [SerializeField][Range(1, 200)] int healthStart = 100;
     private void Awake()
     {
         if (instance == null)
@@ -26,19 +26,28 @@ public class GameManager : MonoBehaviour //si no uso nada de monobehaviour, quit
         }
     }
 
+    void Start()
+    {
+        energy = PostProcessingScanOriginPlayer.Radius; //estaba en el update
+        health = healthStart;
+    }
+
     void Update()
     {
-        if (PostProcessingScanOriginPlayer.Radius >=1)
+
+        if (energy >= 1)
         {
-            PostProcessingScanOriginPlayer.Radius -= Time.deltaTime * energyDrainSpeed;
+            energy -= Time.deltaTime * energyDrainSpeed;
+            PostProcessingScanOriginPlayer.Radius = energy;
         }
     }
 
     //PROPIEDADES, para acceder a las variables de forma segura (sigo sin entender del todo de que forma la podes arruinar)
-    public static int Hp { get => hp; set => hp = value; }
-    public static int Energy { get => energy; set => energy = value; }
+    public static int Health { get => health; set => health = value; }
+    public static float Energy { get => energy; set => energy = value; }
     public static int Ammo { get => ammo; set => ammo = value; }
     public static int Mags { get => mags; set => mags = value; }
-    public static bool[] Keys { get => keys; set => keys = value; }
+    public static bool[] Key { get => Key; set => Key = value; }
     public static int Flares { get => flares; set => flares = value; }
+    public static int Keys { get => keys; set => keys = value; }
 }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Pick-ups
   - Enemy
+  - Pick-ups/Keys
+  - Pick-ups/Tubs
   layers:
   - Default
   - TransparentFX

@@ -41,4 +41,10 @@
 + quisiera que cuando la onda deja de pasar por encima de los objetos, sus mesh dejen de renderizarse, así la silueta de los objetos no se ve contra la onda recorriendo aquellos mas allá (?
 + suavizar el movimiento de la cámara
 + ver como quedaría un DOF ?
++ realmente quisiera con los scans solo se capture un flash/parpadeo/instantanea del momento 3d, y no que se siga percibiendo el movimiento de lo iluminado; quizá también que lo capturado persista un breve momento, como el fogonazo que queda en la visión tras un flash
+
+
+
+
+
 ##

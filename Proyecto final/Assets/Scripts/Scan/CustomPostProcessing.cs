@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteAlways]
 public class CustomPostProcessing : MonoBehaviour
 {
-    public Material material;
+    public Material material; //ver si puedo pasarlos a SerializeField sin perder los parametros y referencias
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {

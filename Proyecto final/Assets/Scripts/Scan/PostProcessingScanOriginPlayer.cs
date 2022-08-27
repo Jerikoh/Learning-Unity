@@ -5,6 +5,7 @@ using UnityEngine;
 [ExecuteAlways]
 public class PostProcessingScanOriginPlayer : MonoBehaviour
 {
+    //PODRIA USAR UN ENUM PARA CORREGIR EL PROBLEMA DE LOS MULTIPLES "CUSTOM PP"? []
     public Material material;
     private static float radius; //lo setea desde un principio porque los cambios ingame sobre el material-shader permanecen, preguntar como evitarlo []
     [SerializeField][Range(1f, 10f)] float startingRadius = 6f;
@@ -19,7 +20,7 @@ public class PostProcessingScanOriginPlayer : MonoBehaviour
         material.SetVector("_Origin", transform.position);
     }
 
-    void FixedUpdate() //propio
+    void FixedUpdate()
     {
         material.SetFloat("_MaskRadius", Radius);
     }

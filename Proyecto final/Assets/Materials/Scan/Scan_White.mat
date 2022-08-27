@@ -81,7 +81,7 @@ Material:
     - _MaskAmount: 0.5
     - _MaskHardness: 0.8
     - _MaskPower: 0.5
-    - _MaskRadius: 0.9997517
+    - _MaskRadius: 5.9044604
     - _Metallic: 0
     - _Mode: 0
     - _MultiplyBlend: 0.1
