@@ -16,9 +16,9 @@
 //stay
 //quiet
 ```
-+ **Tres posibles orientaciones:** horror survival, horde survival, pve/pvp shooter.
-+ **Inspiraciones posibles:** outlast, isolation, re4, dead space -buscar mas scifi/space horror games-, no more room in hell, contagion, obscure, cold fear, killing floor, ?.
-+ **Escenarios posibles, en principios conceptuales:** highschool, forest, mansion, city, town...
++ *Tres posibles orientaciones:* horror survival, horde survival, pve/pvp shooter.
++ *Inspiraciones posibles:* outlast, isolation, re4, dead space -buscar mas scifi/space horror games-, no more room in hell, contagion, obscure, cold fear, killing floor, ?.
++ *Escenarios posibles, en principios conceptuales:* highschool, forest, mansion, city, town...
 
 ### To-Do (organize):
 + homogeneizar texturas, ya que serán innecesarias
@@ -40,9 +40,10 @@
 + aplicar sistema sonido holofónico //ese era el término?
 + quisiera que cuando la onda deja de pasar por encima de los objetos, sus mesh dejen de renderizarse, así la silueta de los objetos no se ve contra la onda recorriendo aquellos mas allá (?
 + suavizar el movimiento de la cámara
-+ ver como quedaría un DOF ?
-+ realmente quisiera con los scans solo se capture un flash/parpadeo/instantanea del momento 3d, y no que se siga percibiendo el movimiento de lo iluminado; quizá también que lo capturado persista un breve momento, como el fogonazo que queda en la visión tras un flash
-
++ ver como quedaría un DOF ? bloom y algo de motion blur
++ realmente quisiera con los scans solo se capture un flash/parpadeo/instantanea del momento 3d, y no que se siga percibiendo el movimiento de lo iluminado; quizá también que lo capturado persista un breve momento, como el fogonazo que queda en la visión tras un flash 
++ probaría agregar algo de "camera bob", en principio, al moverse el player
++ que el pitch del sonido de cada pulso sea relativo al nivel de energía
 
 
 
