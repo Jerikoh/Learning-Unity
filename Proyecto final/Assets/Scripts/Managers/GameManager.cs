@@ -7,10 +7,20 @@ public class GameManager : MonoBehaviour //si no uso nada de monobehaviour, quit
     private static int health, ammo, mags, flares, keys; //keys deberia desaparecer, por tema dicho abajo, hay una llave para cada puerta o cosa
     private static float energy;
     private static bool[] key; //luego ver tema de arma actual, armas en posesion, ammo de c/u, otros items
+    private static bool weapon1, weapon2, weapon3, weapon4;
+    private static Dictionary<string, int> playerAmmo = new Dictionary<string, int>() //demo diccionario para almacenar la municion de cada arma [] USARIA INT,INT y evaluar si es lo mas optimo luego
+    {
+        {"RevolverAmmo", 16},
+        {"ShotgunAmmo", 8},
+        {"RifleAmmo", 60}
+    };
     public static GameManager instance; //esta var es para asegurarme de que no existe otro elemento GM activo, para lograr el singleton
     [SerializeField][Range(0.01f, 1f)] float energyDrainSpeed = 0.1f; //en realidad debo manejar el valor tras .Radius por completo aca, OJO (.Radius = energy), implementar bien cuando ponga pickups de energy; ya se siente que se van desparramando las funciones sobre variables/propiedades, ej este drain deberia ir en el manejo del scan del player?
     [SerializeField][Range(1, 200)] int healthStart = 100;
-    private void Awake()
+    [SerializeField][Range(0f, 10f)] float energyStart = 6;
+    [SerializeField] GameObject[] pulseGameObjects; //*esto es por un comportamiento desconocido de los shaders, preventivo, [] pero podria implementar que justo antes de despawnear un item se active el GO placeholder del pulso
+
+    private void Awake() //para el singleton
     {
         if (instance == null)
         {
@@ -28,17 +38,28 @@ public class GameManager : MonoBehaviour //si no uso nada de monobehaviour, quit
 
     void Start()
     {
-        energy = PostProcessingScanOriginPlayer.Radius; //estaba en el update
+        //energy = PostProcessingScanOriginPlayer.Radius; //estaba en el update, podria ser al reves [] para definirse aca el "energyStart" o startingEnergy (cambiar la var para healthStart)
         health = healthStart;
+        energy = energyStart;
+        PostProcessingScanOriginPlayer.Radius = energy;
+        PulseGORestart(); //*
     }
 
     void Update()
     {
-
         if (energy >= 1)
         {
             energy -= Time.deltaTime * energyDrainSpeed;
             PostProcessingScanOriginPlayer.Radius = energy;
+        }
+    }
+
+    void PulseGORestart() //*
+    {
+        foreach (GameObject item in pulseGameObjects)
+        {
+            item.SetActive(false);
+            item.SetActive(true);
         }
     }
 
@@ -50,4 +71,9 @@ public class GameManager : MonoBehaviour //si no uso nada de monobehaviour, quit
     public static bool[] Key { get => Key; set => Key = value; }
     public static int Flares { get => flares; set => flares = value; }
     public static int Keys { get => keys; set => keys = value; }
+    public static bool Weapon1 { get => weapon1; set => weapon1 = value; }
+    public static bool Weapon2 { get => weapon2; set => weapon2 = value; }
+    public static bool Weapon3 { get => weapon3; set => weapon3 = value; }
+    public static bool Weapon4 { get => weapon4; set => weapon4 = value; }
+    public static Dictionary<string, int> PlayerAmmo { get => playerAmmo; set => playerAmmo = value; }
 }

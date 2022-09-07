@@ -7,8 +7,7 @@ public class LightRCManager : MonoBehaviour
     [SerializeField] Transform originPoint1, endPoint1, originPoint2, endPoint2, originPoint3, endPoint3, originPoint4, endPoint4, lightPosition1, lightPosition2, lightPosition3, lightPosition4;
     Transform actualOriginPoint, actualEndPoint, actualPosition;
     bool flag1 = true; //esto es trampa
-    bool flag2 = true;
-    bool flag3 = true;
+    //bool flag2 = true;
 
     void Start() //para evitar esto podria setearlo arriba del llamado a teleportlights en cada instancia
     {
@@ -24,26 +23,23 @@ public class LightRCManager : MonoBehaviour
     private void RaycastReader()
     {
         //RaycastHit hitted; //no lo uso al caso, hay otro llamado que no lo cuente? LINECAST; pero NECESITO RAYCAST para hacer  && hitted.transform.CompareTag("Enemy") y que no lo hagan otros []
-        if (Physics.Linecast(actualOriginPoint.position, actualEndPoint.position) && flag1 && flag2 && flag3)
+        if (Physics.Linecast(actualOriginPoint.position, actualEndPoint.position) && flag1)
         {
             flag1 = false;
             TeleportLights(originPoint2, endPoint2, lightPosition2);
             Debug.Log("lightPosition2");
         }
-        if (Physics.Linecast(actualOriginPoint.position, actualEndPoint.position) && !flag1 && flag2 && flag3)
+        if (Physics.Linecast(actualOriginPoint.position, actualEndPoint.position) && !flag1)
         {
-            flag2 = false;
+            //flag2 = false;
             TeleportLights(originPoint3, endPoint3, lightPosition3);
             Debug.Log("lightPosition3");
         }
-       /* if (Physics.Linecast(actualOriginPoint.position, actualEndPoint.position) && !flag1 && !flag2 && flag3) //podria hacer otra para que no repita esto, aunque no se note
+      /*if (Physics.Linecast(actualOriginPoint.position, actualEndPoint.position) && !flag2) //podria hacer otra para que no repita esto, aunque no se note
         {
-            flag3 = false;
             TeleportLights(originPoint4, originPoint4, lightPosition4);
             Debug.Log("lightPosition4");
-        }
-        */
-
+        }*/
     }
 
     void TeleportLights(Transform originPoint, Transform endPoint, Transform lightPosition)

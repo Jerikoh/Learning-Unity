@@ -8,6 +8,10 @@ TagManager:
   - Enemy
   - Pick-ups/Keys
   - Pick-ups/Tubs
+  - Pick-ups/Weapons/Knife
+  - Pick-ups/Weapons/Revolver
+  - Pick-ups/Weapons/Hatchet
+  - Pick-ups/Weapons/Spanner
   layers:
   - Default
   - TransparentFX

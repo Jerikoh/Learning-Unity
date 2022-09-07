@@ -5,6 +5,8 @@ using UnityEngine;
 [ExecuteAlways]
 public class PostProcessingScanOriginPlayer : MonoBehaviour
 {
+    // [] al poder setear desde el gamemanager el radio inicial, este script deja de ser necesario; reemplazar por el PP SCAN ORIGIN regular
+
     //PODRIA USAR UN ENUM PARA CORREGIR EL PROBLEMA DE LOS MULTIPLES "CUSTOM PP"? []
     public Material material;
     private static float radius; //lo setea desde un principio porque los cambios ingame sobre el material-shader permanecen, preguntar como evitarlo []

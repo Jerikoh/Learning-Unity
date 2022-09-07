@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float mouseSensitivity = 20f;
     float xRotation;
 
+    //para acceder al script del GO WeaponManager
+    //[SerializeField] GameObject weaponManagerGO;
+
     void Start()
     {
         //inicializando los componentes y variables...
@@ -40,6 +43,10 @@ public class PlayerController : MonoBehaviour
 
         xVelHash = Animator.StringToHash("xVelocity");
         yVelHash = Animator.StringToHash("yVelocity");
+
+    }
+    void Update()
+    {
 
     }
 

@@ -33,12 +33,12 @@ Material:
     - _Mask: 1
     - _MaskHardness: 0
     - _MaskPower: 0.5
-    - _MaskRadius: 3
+    - _MaskRadius: 6
     - _MultiplyBlend: 0.5
     - _Power: 2
     - _Speed: 0.5
     - _Tiling: 5
     m_Colors:
     - _Colour: {r: 0, g: 0.18392277, b: 1, a: 1}
-    - _Origin: {r: -0.1587103, g: 5.3436313, b: -29.7952, a: 0}
+    - _Origin: {r: -2.5580354, g: 3.0099945, b: 0.60497344, a: 0}
   m_BuildTextureStacks: []

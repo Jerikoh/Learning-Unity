@@ -44,6 +44,7 @@
 + realmente quisiera con los scans solo se capture un flash/parpadeo/instantanea del momento 3d, y no que se siga percibiendo el movimiento de lo iluminado; quizá también que lo capturado persista un breve momento, como el fogonazo que queda en la visión tras un flash 
 + probaría agregar algo de "camera bob", en principio, al moverse el player
 + que el pitch del sonido de cada pulso sea relativo al nivel de energía
++ loopear menu soundtrack https://gamedevbeginner.com/create-looping-sound-effects-for-games-for-free-with-audacity/
 
 
 
