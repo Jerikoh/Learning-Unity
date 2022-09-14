@@ -45,7 +45,7 @@
 + probaría agregar algo de "camera bob", en principio, al moverse el player
 + que el pitch del sonido de cada pulso sea relativo al nivel de energía
 + loopear menu soundtrack https://gamedevbeginner.com/create-looping-sound-effects-for-games-for-free-with-audacity/
-
++ quizá muchos de los problemas se solucionen haciendo que el sonar se base en un escaneo usando raytracing, como una esfera que se expande, creando un pointcloud map donde cada punto tiene una vida limitada; complementaría con shader effects tipo bloom, y se podrian agregar ciertos efectos de distorsión al mapa según con lo que chocó (ej. cierta vibración o mayor persistencia en tiempo) //buscar pointcloud effects/animations []
 
 
 
