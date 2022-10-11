@@ -19,7 +19,7 @@ public class AudioFade : MonoBehaviour
     {
         if (fade)
         {
-            if (audios.volume <= 0)
+            if (audios.volume <= 0) //lol nunca hacer if > 0
             {
                 return;
             }

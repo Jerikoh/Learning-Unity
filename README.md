@@ -7,7 +7,7 @@
 > Ejercicios efectuados tras cada nuevo aprendizaje
 ##
 ### Folder: Proyecto Final
-> Progresos de mi primer juego, aka **ɴᴜʟʟ ꜱᴘᴀᴄᴇ** 
+> Progresos de mi primer juego, aka **ɴᴜʟʟ ꜱᴘᴀᴄᴇ** / **ᴅᴇɴꜱᴇʀ ʟɪɢʜᴛꜱ**
 
 ```
 **ɴᴜʟʟ ꜱᴘᴀᴄᴇ** 

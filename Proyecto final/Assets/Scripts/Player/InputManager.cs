@@ -8,6 +8,10 @@ using UnityEngine.InputSystem.Interactions;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] PlayerInput playerInput;
+    [SerializeField] Animator playerAnimator; //si me organizo mejor , esto podria ser un manager []
+
+    //EVENTS
+    public static event Action EventPlayerShoot;
 
     //onShoot, onThrow, onMelee, onUse;
 
@@ -27,7 +31,7 @@ public class InputManager : MonoBehaviour
     InputAction moveAction;
     InputAction lookAction;
     InputAction runAction;
-    InputAction useAction, equip1Action, equip2Action, equip3Action, equip4Action;
+    InputAction useAction, shootAction, slashAction, equip1Action, equip2Action, equip3Action, equip4Action;
 
     //para acceder al script del GO WeaponManager, siento que no es muy organizado conectarlo al inputmanager
     [SerializeField] GameObject weaponManagerGO;
@@ -43,30 +47,36 @@ public class InputManager : MonoBehaviour
         lookAction = currentMap.FindAction("Look");
         runAction = currentMap.FindAction("Run");
         useAction = currentMap.FindAction("Use");
+        shootAction = currentMap.FindAction("Shoot");
+        slashAction = currentMap.FindAction("Melee");
         equip1Action = currentMap.FindAction("Equip weapon 1");
         equip2Action = currentMap.FindAction("Equip weapon 2");
         equip3Action = currentMap.FindAction("Equip weapon 3");
         equip4Action = currentMap.FindAction("Equip weapon 4");
 
-        //aca suscribimos cada funcion callback a cada input action
+        //aca suscribimos cada funcion callback a cada input action, hacemos que cuando sucede tal accion suceda el metodo especificado, como cualquier evento
         moveAction.performed += onMove;
         lookAction.performed += onLook;
         runAction.performed += onRun;
         useAction.performed += onUse;
+        shootAction.performed += onShoot;
+        slashAction.performed += onSlash;
         equip1Action.performed += onEquip1;
         equip2Action.performed += onEquip2;
         equip3Action.performed += onEquip3;
         equip4Action.performed += onEquip4;
 
-        //performed es cuando el keybinding empieza y canceled cuando termina
+        //performed es cuando el keybinding empieza y canceled cuando termina, tambien esta waiting, started y disabled (y otras mas generales)
         moveAction.canceled += onMove;
         lookAction.canceled += onLook;
         runAction.canceled += onRun;
-        useAction.canceled += onUse;
-        equip1Action.canceled += onEquip1;
-        equip2Action.canceled += onEquip2;
-        equip3Action.canceled += onEquip3;
-        equip4Action.canceled += onEquip4;
+        //useAction.canceled += onUse;
+        //shootAction.canceled += onShoot;
+        //slashAction.canceled += onSlash;
+        //equip1Action.canceled += onEquip1;
+        //equip2Action.canceled += onEquip2;
+        //equip3Action.canceled += onEquip3;
+        //equip4Action.canceled += onEquip4;
     }
 
     void HideCursor()
@@ -94,6 +104,22 @@ public class InputManager : MonoBehaviour
     void onUse(InputAction.CallbackContext context) // [] ACTUALMENTE USADO PARA DEMO DICC
     {
         weaponManagerGO.GetComponent<WeaponManager>().CheckAmmo();
+    }
+
+    void onShoot(InputAction.CallbackContext context) // [] ACTUALMENTE USADO PARA DEMO DICC
+    {
+        //llamar EVENTO de disparo, si esta equipada x arma []
+        EventPlayerShoot?.Invoke();
+        //playerAnimator.Play("pistol shooting"); //esta anim esta mal xd VOLVER A BAJAR Y RIGGEAR []
+    }
+
+    void onSlash(InputAction.CallbackContext context) // [] ACTUALMENTE USADO PARA DEMO DICC
+    {
+        //llamar EVENTO de melee, si esta equipada x arma []
+        //EventPlayerSlash?.Invoke();
+        playerAnimator.Play("pistol whip"); //anim si esta equipado el revolver []
+
+        //tambien agregar el delay
     }
 
     void onEquip1(InputAction.CallbackContext context)

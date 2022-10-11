@@ -13,6 +13,10 @@ public class PlayerCollision : MonoBehaviour
     //para acceder al script del GO WeaponManager, no se si es la mejor forma [] hay otras cosas que usar de c# para esto?
     [SerializeField] GameObject weaponManagerGO;
 
+    //EVENTOS
+    public static event Action EventPlayerDamage; //esto deberia ponerlo en un EventManager []
+    public static event Action EventPlayerDeath;
+
     private void OnTriggerEnter(Collider other) //atenti a la diferencia Collider Collision, peligroso
     {
         //consumibles
@@ -71,7 +75,16 @@ public class PlayerCollision : MonoBehaviour
 
     void DealCollDamage()
     {
-        GameManager.Health -= creatureDamage; //luego sera otro el metodo de efectuarlo (per creature hit, temporalizado)
+        if (GameManager.Health - creatureDamage <= 0)
+        {
+            GameManager.Health = 0;
+            EventPlayerDeath?.Invoke(); //invoco el evento si es que alguien escucha
+        }
+        else
+        {
+            GameManager.Health -= creatureDamage; //luego sera otro el metodo de efectuarlo (per creature hit, temporalizado)
+        }
+        EventPlayerDamage?.Invoke();
     }
 }
 

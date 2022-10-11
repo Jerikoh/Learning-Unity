@@ -40,5 +40,5 @@ Material:
     - _Tiling: 5
     m_Colors:
     - _Colour: {r: 0, g: 0.3154678, b: 0.87058824, a: 1}
-    - _Origin: {r: -8.719999, g: 1.4288311, b: -25.7, a: 0}
+    - _Origin: {r: -3.7244205, g: 1.0872536, b: -26.360506, a: 0}
   m_BuildTextureStacks: []

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Ophanim
+* source:	https://sketchfab.com/3d-models/ophanim-46d33d46e08848b3a53fc6e863c9cb38
+* author:	riikkakilpelainen (https://sketchfab.com/riikkakilpelainen)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Ophanim" (https://sketchfab.com/3d-models/ophanim-46d33d46e08848b3a53fc6e863c9cb38) by riikkakilpelainen (https://sketchfab.com/riikkakilpelainen) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

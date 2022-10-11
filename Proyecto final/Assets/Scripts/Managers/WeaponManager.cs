@@ -9,6 +9,11 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] GameObject[] weapons;
     [SerializeField] Transform playerHand;
 
+    void Start()
+    {
+        EquipWeapon(3); //solo para demostracion []
+    }
+
     void DisableWeapons()
     {
         foreach (GameObject index in weapons)

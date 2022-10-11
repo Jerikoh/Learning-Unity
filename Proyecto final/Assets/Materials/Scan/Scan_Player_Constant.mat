@@ -37,8 +37,8 @@ Material:
     - _MultiplyBlend: 0.2
     - _Power: 0
     - _Speed: 0.5
-    - _Tiling: 70
+    - _Tiling: 100
     m_Colors:
     - _Colour: {r: 1, g: 1, b: 1, a: 1}
-    - _Origin: {r: 1.291029, g: 2.1475239, b: -26.566246, a: 0}
+    - _Origin: {r: -6.7235446, g: 2.1473851, b: -13.580046, a: 0}
   m_BuildTextureStacks: []

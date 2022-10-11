@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour //si no uso nada de monobehaviour, quito la herencia y quiza tenga que poner static a la clase tambien, pero si usa el start para asegurar el singleton... al menos no con los singleton
 {
-    private static int health, ammo, mags, flares, keys; //keys deberia desaparecer, por tema dicho abajo, hay una llave para cada puerta o cosa
-    private static float energy;
+    private static int health, maxHealth = 100, ammo, mags, flares, keys; //keys deberia desaparecer, por tema dicho abajo, hay una llave para cada puerta o cosa
+    private static float energy, maxEnergy = 10f; //si quiero hacer maxX editables, y aun asi poder usar sus valores desde scrit HUD sin inicializar, deberia usar un scriptableobject? []
     private static bool[] key; //luego ver tema de arma actual, armas en posesion, ammo de c/u, otros items
     private static bool weapon1, weapon2, weapon3, weapon4;
     private static Dictionary<string, int> playerAmmo = new Dictionary<string, int>() //demo diccionario para almacenar la municion de cada arma [] USARIA INT,INT y evaluar si es lo mas optimo luego
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour //si no uso nada de monobehaviour, quit
     [SerializeField][Range(1, 200)] int healthStart = 100;
     [SerializeField][Range(0f, 10f)] float energyStart = 6;
     [SerializeField] GameObject[] pulseGameObjects; //*esto es por un comportamiento desconocido de los shaders, preventivo, [] pero podria implementar que justo antes de despawnear un item se active el GO placeholder del pulso
+    [SerializeField] float SceneReloadDelay = 5f; //[Range(0f, 10f)]
 
     private void Awake() //para el singleton
     {
@@ -43,6 +46,8 @@ public class GameManager : MonoBehaviour //si no uso nada de monobehaviour, quit
         energy = energyStart;
         PostProcessingScanOriginPlayer.Radius = energy;
         PulseGORestart(); //*
+
+        PlayerCollision.EventPlayerDeath += OnPlayerDeath;
     }
 
     void Update()
@@ -63,6 +68,21 @@ public class GameManager : MonoBehaviour //si no uso nada de monobehaviour, quit
         }
     }
 
+    void OnPlayerDeath()
+    {
+        Invoke("ReloadScene", SceneReloadDelay);
+    }
+
+    void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void OnDisable()
+    {
+        PlayerCollision.EventPlayerDeath -= OnPlayerDeath;
+    }
+
     //PROPIEDADES, para acceder a las variables de forma segura (sigo sin entender del todo de que forma la podes arruinar)
     public static int Health { get => health; set => health = value; }
     public static float Energy { get => energy; set => energy = value; }
@@ -76,4 +96,6 @@ public class GameManager : MonoBehaviour //si no uso nada de monobehaviour, quit
     public static bool Weapon3 { get => weapon3; set => weapon3 = value; }
     public static bool Weapon4 { get => weapon4; set => weapon4 = value; }
     public static Dictionary<string, int> PlayerAmmo { get => playerAmmo; set => playerAmmo = value; }
+    public static int MaxHealth { get => maxHealth; set => maxHealth = value; }
+    public static float MaxEnergy { get => maxEnergy; set => maxEnergy = value; }
 }

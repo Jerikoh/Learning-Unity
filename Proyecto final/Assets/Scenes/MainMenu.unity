@@ -20955,8 +20955,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33fdb8cb81b9aff41bea81e9848b4525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneLoadDelay: 3
-  exitGameDelay: 2
+  scanMaterial: {fileID: 2100000, guid: 60a6be72fe3c87d438a8608cdc4bf2de, type: 2}
+  audioBackground: {fileID: 1764827829}
+  sceneLoadDelay: 5
+  blendRiseSpeed: 0.05
+  volumeRiseSpeed: 0.1
+  volumeFallSpeed: 0.005
+  exitGameDelay: 3
 --- !u!114 &1680843298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22123,9 +22128,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 863bbb8639606a74baaf69694137aa80, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 713ac08287ee59745b5e3bade14d3519, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.9
   m_Pitch: 1
   Loop: 1
   Mute: 0
