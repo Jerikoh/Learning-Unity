@@ -12,12 +12,12 @@ public class ItemRotation : MonoBehaviour
     //agregar animacion "ping pong" arriba abajo, DONE
     [SerializeField][Range(0f, 10f)] float amplitude, frequency;
 
-    void Update()
+    void FixedUpdate()
     {
         //rotacion
-        transform.Rotate(XdegreesPerSec, YdegreesPerSec, ZdegreesPerSec * Time.time);
+        transform.Rotate(XdegreesPerSec, YdegreesPerSec, ZdegreesPerSec * Time.fixedDeltaTime);
 
         //up-down sine
-        transform.localPosition = new Vector3(transform.localPosition.x, MathF.Sin(Time.time * frequency) * amplitude + transform.localPosition.y, transform.localPosition.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, MathF.Sin(Time.fixedTime * frequency) * amplitude + transform.localPosition.y, transform.localPosition.z);
     }
 }

@@ -6,11 +6,13 @@ using System;
 public class ContactTrigger : MonoBehaviour
 {
     public static event Action EventPlayerContact;
+    bool wasTriggered = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !wasTriggered)
         {
+            wasTriggered = true;
             EventPlayerContact?.Invoke();
         }
     }

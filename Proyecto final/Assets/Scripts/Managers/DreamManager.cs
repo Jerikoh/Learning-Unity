@@ -9,16 +9,18 @@ public class DreamManager : MonoBehaviour
 {
     //!! DIRTY CODE [] podria seccionar y usar eventos
 
-    [Header("GameObject tarjets:")]
+    [Header("GameObject targets:")]
     [SerializeField] GameObject hallGO; //deberia aclarar a los materiales en la var en vez de a los GO jaja []
     [SerializeField] GameObject embodiedGO;
     [SerializeField] GameObject ophanimGO;
 
-    [Header("Audio tarjets:")]
+    [Header("Audio targets:")]
     [SerializeField] AudioSource audioBackground;
+    [SerializeField] AudioSource audioEmbodied;
     [SerializeField] AudioSource audioTransformation;
     [SerializeField] GameObject audioTransfCompleted; //no pude hacerlo andar sin delay como audiosource []*
     [SerializeField] AudioSource audioOphanimBackground;
+    [SerializeField] AudioSource audioWindBlow;
 
     [Header("Audio play delays:")]
     [SerializeField][Range(0f, 10f)] float audioTransfDelay = 0;
@@ -26,7 +28,7 @@ public class DreamManager : MonoBehaviour
     [SerializeField][Range(0f, 10f)] float audioOpBackgDelay = 0.8f;
     [SerializeField][Range(0f, 5f)] float volumeRiseSpeed = 0.1f; //del background al inicio de escena 
 
-    [Header("Sonar material tarjets:")]
+    [Header("Sonar material targets:")]
     [SerializeField] Material hall;
     [SerializeField] Material embodied;
     [SerializeField] Material ophanim;
@@ -34,7 +36,7 @@ public class DreamManager : MonoBehaviour
     float currentPowHall, currentPowEmbodied, currentPowOphanim, currentBleHall, currentBleEmbodied, currentBleOphanim, currentSpeHall, currentSpeEmbodied, currentSpeOphanim; //para guardar los valores iniciales de cada material y restaurarlos luego, [] deberia llamarlas "regular"
     float powHall, powEmbodied, powOphanim, bleHall, bleEmbodied, bleOphanim, speHall, speEmbodied, speOphanim;
 
-    [Header("PostProcessing volume tarjets:")]
+    [Header("PostProcessing volume targets:")]
     [SerializeField] PostProcessVolume volumeOpExit;
 
     [Header("Transition variables:")]
@@ -63,6 +65,7 @@ public class DreamManager : MonoBehaviour
     [SerializeField][Range(0f, 5f)] float blendRiseSpeed = 0.1f;
     [SerializeField][Range(0f, 5f)] float postpRiseSpeed = 0.3f;
     [SerializeField][Range(0f, 5f)] float pitchFallSpeed = 0.3f;
+    [SerializeField][Range(0f, 5f)] float soundFallSpeed = 0.3f;
 
 
     bool rise = false;
@@ -72,18 +75,25 @@ public class DreamManager : MonoBehaviour
     bool transformed = false;
     bool transFinished = false;
     bool ending = false;
-    bool stopVolumeRise = false;
+
+    public static event Action OphanimShake;
+    public static event Action ShakeRestartMag;
 
 
 
     void Start()
     {
+        //por seguridad ante problema con pulse
+        hallGO.SetActive(false);
+        embodiedGO.SetActive(false);
+        hallGO.SetActive(true);
+        embodiedGO.SetActive(true);
+
         ContactTrigger.EventPlayerContact += DoContact;
 
         ophanim.SetFloat("_Power", maxFallPow);
 
         //volumeOpExit = GetComponent<PostProcessVolume>(); //ni idea por que aca no necesita esto y en pp rise down script si []
-
         //audioTransformation = GetComponent<AudioSource>(); //idem
         //audioTransfCompleted = GetComponent<AudioSource>();
         //audioOphanimBackground = GetComponent<AudioSource>();
@@ -103,14 +113,9 @@ public class DreamManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (audioBackground.volume < 0.9f && stopVolumeRise == false)
+        if (audioBackground.volume < 0.9f)
         {
-            audioBackground.volume += Time.deltaTime * volumeRiseSpeed;
-
-            if (audioBackground.volume >= 0.9f)
-            {
-                stopVolumeRise = true;
-            }
+            audioBackground.volume += Time.fixedDeltaTime * volumeRiseSpeed;
         }
 
         if (contact)
@@ -120,13 +125,17 @@ public class DreamManager : MonoBehaviour
                 powEmbodied = embodied.GetFloat("_Power");
                 powEmbodied -= Time.fixedDeltaTime * fallSpeed;
                 embodied.SetFloat("_Power", powEmbodied);
-
+                OphanimShake?.Invoke();
             }
             if (embodied.GetFloat("_Power") <= maxFallPow && transformed == false)
             {
                 Invoke("Transformation", stayTime);
                 transformed = true;
                 Debug.Log("TRANSFORMED = TRUE");
+            }
+            if (audioEmbodied.volume > 0f)
+            {
+                audioEmbodied.volume -= Time.fixedDeltaTime * 0.15f; //claro deberia ser editable desde inspector con una var propia  []
             }
         }
 
@@ -137,10 +146,11 @@ public class DreamManager : MonoBehaviour
                 powOphanim = ophanim.GetFloat("_Power");
                 powOphanim += Time.fixedDeltaTime * riseSpeed;
                 ophanim.SetFloat("_Power", powOphanim);
+                OphanimShake?.Invoke();
             }
             if (ophanim.GetFloat("_Power") >= maxRisePow)
             {
-                //ophanim.SetFloat("_Power", maxRisePow); 
+                ophanim.SetFloat("_Power", maxRisePow); 
                 transFinished = true;
             }
         }
@@ -148,12 +158,15 @@ public class DreamManager : MonoBehaviour
         if (transFinished && ending == false)
         {
             float pingPower = ophanim.GetFloat("_Power");
-            pingPower = Mathf.PingPong(Time.time * pingPongSpeed, pingPongA) - pingPongB;
+            pingPower = Mathf.SmoothDamp(pingPower, Mathf.PingPong(Time.time * pingPongSpeed, pingPongA) - pingPongB, ref stayTime, 1f); //tirando fruta, antes Mathf.PingPong(Time.time * pingPongSpeed, pingPongA) - pingPongB;
             ophanim.SetFloat("_Power", pingPower);
 
             audioTransfCompleted.SetActive(true);
 
             Invoke("EndingFlag", endingTimer);
+
+            OphanimShake?.Invoke();
+            ShakeRestartMag?.Invoke();
         }
 
         if (ending)
@@ -167,9 +180,6 @@ public class DreamManager : MonoBehaviour
         contact = true;
         audioTransformation.PlayDelayed(audioTransfDelay);
         audioOphanimBackground.PlayDelayed(audioOpBackgDelay);
-
-        //audioTransformation.SetActive(true);
-        //ACA DEBERIA BAJAR EL VOLUMEN DE SFX STATUE Y BACKGROUND EN PLAYER []
     }
 
     void Transformation()
@@ -182,6 +192,7 @@ public class DreamManager : MonoBehaviour
 
     void EndingFlag()
     {
+        if(!ending) ShakeRestartMag?.Invoke();
         ending = true;
     }
 
@@ -204,29 +215,28 @@ public class DreamManager : MonoBehaviour
         //subiendo PP volume de OphanimExit
         if (volumeOpExit.weight < 1)
         {
-            volumeOpExit.weight += Time.deltaTime * postpRiseSpeed; //deberia usar un rise/fallSpeed propio para cada efecto [] para mayor control
+            volumeOpExit.weight += Time.fixedDeltaTime * postpRiseSpeed; //deberia usar un rise/fallSpeed propio para cada efecto [] para mayor control
         }
         //bajando volumen al sonido de background y background oph
-        if (audioOphanimBackground.volume > 0f)
+        if (audioWindBlow.volume > 0f)
         {
-            audioOphanimBackground.volume -= Time.deltaTime * pitchFallSpeed; //podria tener var propia de fallspeed
-            audioBackground.volume -= Time.deltaTime * pitchFallSpeed;
+            audioOphanimBackground.volume -= Time.fixedDeltaTime * soundFallSpeed; //podria tener var propia de fallspeed
+            audioBackground.volume -= Time.fixedDeltaTime * soundFallSpeed;
+            audioWindBlow.volume -= Time.fixedDeltaTime * soundFallSpeed;
         }
         //bajando pitch al sonido de background
-        if (audioOphanimBackground.pitch > 0.52f)
+        if (audioOphanimBackground.pitch > 0.72f) //0.52f
         {
-            audioOphanimBackground.pitch -= Time.deltaTime * pitchFallSpeed;
+            audioOphanimBackground.pitch -= Time.fixedDeltaTime * pitchFallSpeed;
         }
 
-        //llamando SceneLoad(); al comprobar que el sonido haya llegado a 0
-        if (audioOphanimBackground.volume <= 0f)
+        //llamando SceneLoad(); al comprobar que el sonido haya llegado a 0, no seria la mejor forma
+        if (audioWindBlow.volume <= 0f)
         {
             SceneManager.LoadScene("Scene_1");
         }
-
         //agregando "trauma"/shake screen, por la mitad? (si lo hago usarlo en transformacion tambien), PARA ESO copiar otro script PerlinCameraShake, ponerlo en la cam, hacerlo oir un evento que se dispare desde aca cuando PPvolume tenga X presencia
-
-        //LLAMANDO SceneLoad(); con Invoke para cargar proximo nivel //y al prox nivel tambien hacerle una transicion
+        OphanimShake?.Invoke();
     }
 
     void OnDestroy()

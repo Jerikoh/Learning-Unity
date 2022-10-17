@@ -6,16 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour //si no uso nada de monobehaviour, quito la herencia y quiza tenga que poner static a la clase tambien, pero si usa el start para asegurar el singleton... al menos no con los singleton
 {
-    private static int health, maxHealth = 100, ammo, mags, flares, keys; //keys deberia desaparecer, por tema dicho abajo, hay una llave para cada puerta o cosa
+    //!! Todo esto debe ser reescrito! []
+
+    private static int health, maxHealth = 100, keys; //keys deberia desaparecer, por tema dicho abajo, hay una llave para cada puerta o cosa
     private static float energy, maxEnergy = 10f; //si quiero hacer maxX editables, y aun asi poder usar sus valores desde scrit HUD sin inicializar, deberia usar un scriptableobject? []
-    private static bool[] key; //luego ver tema de arma actual, armas en posesion, ammo de c/u, otros items
-    private static bool weapon1, weapon2, weapon3, weapon4;
-    private static Dictionary<string, int> playerAmmo = new Dictionary<string, int>() //demo diccionario para almacenar la municion de cada arma [] USARIA INT,INT y evaluar si es lo mas optimo luego
-    {
-        {"RevolverAmmo", 16},
-        {"ShotgunAmmo", 8},
-        {"RifleAmmo", 60}
-    };
+    private static bool[] key; //luego ver tema de arma actual, armas en posesion, ammo de c/u, otros items []
     public static GameManager instance; //esta var es para asegurarme de que no existe otro elemento GM activo, para lograr el singleton
     [SerializeField][Range(0.01f, 1f)] float energyDrainSpeed = 0.1f; //en realidad debo manejar el valor tras .Radius por completo aca, OJO (.Radius = energy), implementar bien cuando ponga pickups de energy; ya se siente que se van desparramando las funciones sobre variables/propiedades, ej este drain deberia ir en el manejo del scan del player?
     [SerializeField][Range(1, 200)] int healthStart = 100;
@@ -86,16 +81,8 @@ public class GameManager : MonoBehaviour //si no uso nada de monobehaviour, quit
     //PROPIEDADES, para acceder a las variables de forma segura (sigo sin entender del todo de que forma la podes arruinar)
     public static int Health { get => health; set => health = value; }
     public static float Energy { get => energy; set => energy = value; }
-    public static int Ammo { get => ammo; set => ammo = value; }
-    public static int Mags { get => mags; set => mags = value; }
     public static bool[] Key { get => Key; set => Key = value; }
-    public static int Flares { get => flares; set => flares = value; }
     public static int Keys { get => keys; set => keys = value; }
-    public static bool Weapon1 { get => weapon1; set => weapon1 = value; }
-    public static bool Weapon2 { get => weapon2; set => weapon2 = value; }
-    public static bool Weapon3 { get => weapon3; set => weapon3 = value; }
-    public static bool Weapon4 { get => weapon4; set => weapon4 = value; }
-    public static Dictionary<string, int> PlayerAmmo { get => playerAmmo; set => playerAmmo = value; }
     public static int MaxHealth { get => maxHealth; set => maxHealth = value; }
     public static float MaxEnergy { get => maxEnergy; set => maxEnergy = value; }
 }

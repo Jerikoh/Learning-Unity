@@ -1,13 +1,15 @@
 # Learning-Unity
 
-### Folder: Practice
-> Sandbox donde se cocinan los ejercicios prácticos y cada instancia del proyecto final
+### Folder: Proyecto Final
+> Progresos de mi primer juego, aka **ɴᴜʟʟ ꜱᴘᴀᴄᴇ** / **ᴅᴇɴꜱᴇʀ ʟɪɢʜᴛꜱ**
+##
+### Folder: Build
+> Último build del proyecto en progreso
 ##
 ### Folder: Desafíos
 > Ejercicios efectuados tras cada nuevo aprendizaje
 ##
-### Folder: Proyecto Final
-> Progresos de mi primer juego, aka **ɴᴜʟʟ ꜱᴘᴀᴄᴇ** / **ᴅᴇɴꜱᴇʀ ʟɪɢʜᴛꜱ**
+
 
 ```
 **ɴᴜʟʟ ꜱᴘᴀᴄᴇ** 

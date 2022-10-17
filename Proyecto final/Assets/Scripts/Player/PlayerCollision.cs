@@ -28,7 +28,7 @@ public class PlayerCollision : MonoBehaviour
         if (other.gameObject.CompareTag("Pick-ups/Tubs"))
         {
             Destroy(other.gameObject);
-            GameManager.Energy += 1f;
+            GameManager.Energy += 1f; //esto mas adelante deberia cambiar para hacerlo consumible de forma manual y no no-pickup []
         }
         //armas
         //desde acá podría determinar la animacion tambien? para variar el idle holding melee/pistol/rifle, again no se si es la forma mas ordenada de hacerlo, pero me parece que pensandolo como eventos (pick up) esta bueno que se le asocie a este el acto de definir los efectos de agarrar tal cosa (cambio de animacion, modelo, etc); se podría pensar en tanto "QUÉ-CONQUÉ-COMO-CONQUIÉN-etc"
@@ -36,25 +36,21 @@ public class PlayerCollision : MonoBehaviour
         {
             Destroy(other.gameObject);
             weaponManagerGO.GetComponent<WeaponManager>().EquipWeapon(0);
-            GameManager.Weapon1 = true; //para señalar posesion de tal arma
         }
         if (other.gameObject.CompareTag("Pick-ups/Weapons/Knife"))
         {
             Destroy(other.gameObject);
             weaponManagerGO.GetComponent<WeaponManager>().EquipWeapon(1);
-            GameManager.Weapon2 = true;
         }
         if (other.gameObject.CompareTag("Pick-ups/Weapons/Hatchet"))
         {
             Destroy(other.gameObject);
             weaponManagerGO.GetComponent<WeaponManager>().EquipWeapon(2);
-            GameManager.Weapon3 = true;
         }
         if (other.gameObject.CompareTag("Pick-ups/Weapons/Revolver"))
         {
             Destroy(other.gameObject);
             weaponManagerGO.GetComponent<WeaponManager>().EquipWeapon(3);
-            GameManager.Weapon4 = true;
         }
     }
 

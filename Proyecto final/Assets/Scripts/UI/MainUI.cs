@@ -22,16 +22,11 @@ public class MainUI : MonoBehaviour
         audioBackground.volume = 0f;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (audioBackground.volume < 0.9f && stopVolumeRise == false)
+        if (audioBackground.volume < 0.9f)
         {
-            audioBackground.volume += Time.deltaTime * volumeRiseSpeed;
-
-            if (audioBackground.volume >= 0.9f)
-            {
-                stopVolumeRise = true;
-            }
+            audioBackground.volume += Time.fixedDeltaTime * volumeRiseSpeed;
         }
 
         if (startScanFade)
@@ -43,7 +38,7 @@ public class MainUI : MonoBehaviour
 
             if (audioBackground.volume > 0f)
             {
-                audioBackground.volume -= Time.deltaTime * volumeFallSpeed;
+                audioBackground.volume -= Time.fixedDeltaTime * volumeFallSpeed;
             }
         }
     }
@@ -66,7 +61,7 @@ public class MainUI : MonoBehaviour
 
     void StartScene()
     {
-        SceneManager.LoadScene("Scene_1"); //o puedo usar el indice de la escena así .LoadScene(1);
+        SceneManager.LoadScene("Scene_0"); //o puedo usar el indice de la escena así .LoadScene(0);
     }
 
     void ExitGame()

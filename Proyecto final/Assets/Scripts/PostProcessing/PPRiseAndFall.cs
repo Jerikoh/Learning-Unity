@@ -21,7 +21,7 @@ public class PPRiseAndFall : MonoBehaviour
         PlayerCollision.EventPlayerDamage += RiseStart;
     }
 
-    void Update() //quitar comentarios []
+    void Update()
     {
         if (rise)
         {
@@ -32,7 +32,6 @@ public class PPRiseAndFall : MonoBehaviour
             }
             else //if (volume.weight >= 1)
             {
-                Debug.Log("invocando SwitchToFall");
                 Invoke("SwitchToFall", stayTime);
             }
         }
@@ -53,7 +52,6 @@ public class PPRiseAndFall : MonoBehaviour
     public void RiseStart()
     {
         rise = true;
-        Debug.Log("rise = true");
     }
 
     void SwitchToFall()

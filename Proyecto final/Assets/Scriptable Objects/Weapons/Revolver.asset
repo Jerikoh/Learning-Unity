@@ -23,4 +23,4 @@ MonoBehaviour:
   precision: 80
   reloadSpeed: 5
   recoil: 30
-  automatic: 1
+  automatic: 0
