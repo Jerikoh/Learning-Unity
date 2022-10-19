@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Scan_Pattern_Chaorruption
+  m_Name: Scan_Pattern_Chaorruption Menu
   m_Shader: {fileID: 4800000, guid: 34f449e1093a9fb498ea2cd79f1a4af5, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -33,7 +33,7 @@ Material:
     - _Mask: 1
     - _MaskHardness: 0
     - _MaskPower: 0.9
-    - _MaskRadius: 3
+    - _MaskRadius: 3.7
     - _MultiplyBlend: 0
     - _Power: 5
     - _Speed: 0.2

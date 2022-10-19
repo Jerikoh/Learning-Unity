@@ -19,7 +19,7 @@
 //quiet
 ```
 + *Tres posibles orientaciones:* horror survival, horde survival, pve/pvp shooter.
-+ *Inspiraciones posibles:* outlast, isolation, re4, dead space -buscar mas scifi/space horror games-, no more room in hell, contagion, obscure, cold fear, killing floor, ?.
++ *Posibles fuentes de inspiración:* outlast, isolation, re4, dead space -buscar mas scifi/space horror games-, no more room in hell, contagion, obscure, cold fear, killing floor, nightmare of decay, evil within, silent hill 2, the forest, metro exodus, stalker, soma, cry of fear, lost in vivo, paratopic, madison, Yuki Onna, dusk, darkwood, lidar, alan wake, half life, blair witch, the medium, Gloomwood.
 + *Escenarios posibles, en principios conceptuales:* highschool, forest, mansion, city, town...
 
 ### To-Do (organize):

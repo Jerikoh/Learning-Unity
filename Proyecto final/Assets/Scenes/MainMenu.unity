@@ -1521,6 +1521,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4665896904478102, guid: c479e27afb77a3647bfa4af3d2db6a67, type: 3}
   m_PrefabInstance: {fileID: 122270337}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &140818447
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 886493661}
+    m_Modifications:
+    - target: {fileID: 1025046549242970, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_Name
+      value: Cultist
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615886734921068, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615886734921068, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.660741
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615886734921068, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.1055818
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615886734921068, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.5863647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615886734921068, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615886734921068, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615886734921068, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615886734921068, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615886734921068, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615886734921068, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615886734921068, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95591080237398288, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0e0c2b8e1465ca24cbe55b78382cf0c9, type: 2}
+    - target: {fileID: 95591080237398288, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
 --- !u!1001 &142699578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10754,6 +10819,7 @@ Transform:
   - {fileID: 2034002475}
   - {fileID: 1746378398}
   - {fileID: 1839640035}
+  - {fileID: 1536569058}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -12787,8 +12853,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1929919138}
   m_HandleRect: {fileID: 1929919137}
   m_Direction: 2
-  m_Value: 1.0000007
-  m_Size: 0.6915844
+  m_Value: 1.0000002
+  m_Size: 0.4074115
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15687,8 +15753,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 567.45, y: -531.75}
-  m_SizeDelta: {x: 834.9, y: 1063.5}
+  m_AnchoredPosition: {x: 567.45, y: -902.65}
+  m_SizeDelta: {x: 834.9, y: 1805.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1227080989
 MonoBehaviour:
@@ -15710,19 +15776,31 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xA1Gracias por testear la prueba de concepto de Denser Lights!\r\nEsta
+  m_text: "Gracias por testear la prueba de concepto de Denser Lights!\r\n\nEsta
     es una secci\xF3n dedicada a comentarios de desarrollo, observaciones y futuras
-    implementaciones.\n\n\n//Sobre la versi\xF3n actual:\nEl prop\xF3sito de esta
-    build es explorar las posibilidades de la mec\xE1nica de \"visi\xF3n de sonar\"
-    en contexto de un horror survival game.\nActualmente, la segunda escena no corresponde
-    al nivel ni narrativa planeados, siendo mas una muestra de las mec\xE1nicas implementadas
-    hasta el momento.\nNotar\xE1n -entre otras cosas- que la capacidad de apuntar
-    el arma se encuentra limitada (solo apuntando hacia el frente en l\xEDnea recta),
-    esto es porque a\xFAn no ha sido implementada la animaci\xF3n por IK.\nEn fin,
-    subestim\xE9 el tiempo que conlleva implementar y pulir cada cosa n.n', tendr\xE1n
-    su momento!\n\n\n//Inspiraciones principales:\n\n\n//Otras propuestas:\r\n\n\n//Algunos
-    conflictos:\r\n\n\n//Bugs conocidos:\r\n\n\n//Pr\xF3ximos cambios principales:\r\n\n\n//Otros
-    cambios planeados:\n\n\nPor si quieres contactarte: jerebizai@gmail.com"
+    implementaciones.\n\n\n//Sobre la versi\xF3n actual:\nEl prop\xF3sito de este
+    build es explorar las posibilidades de la mec\xE1nica \"visi\xF3n de sonar\"
+    en el contexto de un horror survival game.\nActualmente, la segunda escena no
+    corresponde al nivel ni narrativa planeadas, siendo mas una muestra de las mec\xE1nicas
+    implementadas hasta el momento.\nNotar\xE1n -entre otras cosas- que la capacidad
+    de apuntar el arma se encuentra limitada (apuntando solo hacia el frente), dado
+    que a\xFAn no ha sido implementada la animaci\xF3n por IK.\nEn fin, subestim\xE9
+    el tiempo que conlleva implementar y pulir cada cosa, tendr\xE1n su momento!\n\n\n//Inspiraciones:\nResident
+    Evil 4, Dead Space, Alien Isolation, Outlast, Soma, Contagion, Obscure, Silent
+    Hill 2, The Evil Within, Cry of Fear, Lost in Vivo, Dusk, Nightmare of Decay,
+    Darkwood, The Forest, Half Life, Total Chaos, Divine Frequency, Cultic, Siren.\n\n\n//Otras
+    propuestas:\r\n\n\n//Algunos conflictos:\r\n\n\n//Bugs conocidos:\r\n- El modelo
+    del cuerpo del player en ocasiones aparece y desaparece.\n- Ante algunas colisiones
+    al correr el jugador sale volando.\n\n\n//Pr\xF3ximos cambios principales:\r\n-
+    Item arrojable que emita pulsos por un tiempo, a modo de flare.\r\n- Capacidades
+    de agacharse y asomarse ante paredes, estados que afectar\xEDan la capacidad
+    de detecci\xF3n enemiga.\r\n- Pulsos de sonar manuales e individuales, no autom\xE1ticos
+    ni cont\xEDnuos, cuyas variables (frecuencia y di\xE1metro) podamos definir manualmente,
+    con sus respectivos costos de energ\xEDa y \"overheat\".\n\n\n//Otros cambios
+    planeados:\n- M\xE1s enemimgos; stalker, climber, heavy, runner, possessed...
+    la est\xE9tica rondar\xEDa \"The Thing\" o \"Dead Space\".\r\n- Animaci\xF3nes
+    v\xEDa inverse kinematics.\r\n- Men\xFA de pausa; .\r\n- Implementar checkpoints.\n\n\nPara
+    contactarse: jerebizai@gmail.com"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d186f705b077b646adad14b6b3ce719, type: 2}
   m_sharedMaterial: {fileID: 3127148747690780588, guid: 1d186f705b077b646adad14b6b3ce719, type: 2}
@@ -18182,7 +18260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1503f1c11efcb44e8c80a7f8ce78719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 60a6be72fe3c87d438a8608cdc4bf2de, type: 2}
+  material: {fileID: 2100000, guid: c1ff1921aa3aff848a141c52bea6b0b0, type: 2}
 --- !u!4 &1395112724
 Transform:
   m_ObjectHideFlags: 0
@@ -19921,6 +19999,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4590304272372358, guid: e5f1d3c0b2cd14e4089342a7edaf41fb, type: 3}
   m_PrefabInstance: {fileID: 1530574611}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1536569058 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4615886734921068, guid: 773d21b665a278541ae517d2cf706d63, type: 3}
+  m_PrefabInstance: {fileID: 140818447}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1536928882
 PrefabInstance:
@@ -23355,7 +23438,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -0.006800167, y: 0.0022583008}
-  m_SizeDelta: {x: 1385, y: 1063.5}
+  m_SizeDelta: {x: 1385, y: 1805.3}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1836851581
 MonoBehaviour:
@@ -24805,7 +24888,7 @@ RectTransform:
   m_Father: {fileID: 85440931}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.3084156}
+  m_AnchorMin: {x: 0, y: 0.59258854}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -26367,7 +26450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2bab577bdebb684cb2427e215ff00a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 60a6be72fe3c87d438a8608cdc4bf2de, type: 2}
+  material: {fileID: 2100000, guid: c1ff1921aa3aff848a141c52bea6b0b0, type: 2}
 --- !u!4 &2018333004
 Transform:
   m_ObjectHideFlags: 0
