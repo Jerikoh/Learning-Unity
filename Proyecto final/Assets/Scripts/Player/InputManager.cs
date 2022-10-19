@@ -154,7 +154,8 @@ public class InputManager : MonoBehaviour
 
     void onUse(InputAction.CallbackContext context)
     {
-        //weaponManagerGO.GetComponent<WeaponManager>().CheckAmmo();
+        //playerAnimator.SetTrigger("Pick-up"); //!! deberia efectuarse desde el raycaster, de disponerse un elemento interactuable y efectuar el jugador la interaccion []
+        //weaponManagerGO.GetComponent<WeaponManager>().CheckAmmo(); // [] mientras hacer que sea el medio para consultar ammo del arma actual, o podria crear un input dedicado con Q y una animacion que por ahora seria la de recarga
     }
 
     void onShoot(InputAction.CallbackContext context) // [] deberia ser onAttack, que invoke un evento PlayerAttack, que procese el efecto segun lo que tenga equipado

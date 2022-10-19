@@ -11,13 +11,15 @@ public class WeaponManager : MonoBehaviour
 
     //cuando son referencias fijas, definimos desde el Inspector, al no ser dinamico o variar luego (?)
     [SerializeField] GameObject[] weapons;
+    [SerializeField] Animator playerAnimator; //si me organizo mejor , esto podria ser un manager []
     [SerializeField] Transform playerHand;
-    private static int equippedItem, flares;
+    private static int equippedItem = 5, flares = 0; //por ahora el 5 en equippedItem se usa como null, pero no deberia ser asi
     private static bool weapon1, weapon2, weapon3, weapon4;
 
     bool weaponReady = false; //al ser relativo al arma equipada, es comun a todas (?)
     bool delayReady = true;
     bool reloadReady = true;
+    bool start = true;
 
     //puntualmente para el revolver, de nuevo no deberia ser así* []
     [SerializeField] WeaponRaycastManager weapon4_GO;
@@ -48,7 +50,7 @@ public class WeaponManager : MonoBehaviour
     //----------------------------------------------------------AUXILIAR/TEMPORAL (ante este build improvizado con solo revolver)
     void Start()
     {
-        //EquipWeapon(3); //solo para demostracion[]
+        EquipWeapon(3); //solo para demostracion[]
 
         InputManager.EventPlayerTrigger += RevolverShoot;
         InputManager.EventPlayerReload += RevolverReload;
@@ -86,13 +88,14 @@ public class WeaponManager : MonoBehaviour
             Invoke("ReloadReady", reloadTime);
             ammo += ammoIn;
             ammoIn = 0;
+            Debug.Log("Recargando...");
             //!! ANIM AQUI
+            playerAnimator.SetTrigger("Pistol reload"); //!! lo mismo, es una anim propia del revolver y no comun a toda arma de fuego
             while (ammoIn < weaponRounds && ammo > 0) //seguro haya otra forma para recargar "progresivamente"
             {
                 ammo--;
                 ammoIn++;
             }
-
             //para esta build donde uso solo el revolver; aca supongo deberia trabajar con objetos... o se pueden escribir desde aca las variables que se le pasaron como referencia? para manipular directamente [] ++ buscar por que no hacen funciones con mas de una salida o producto indicable como salida
             //EN REALIDAD si tuviese una lista para cada variable de arma y todas estas compartieran el mismo indice, podria evitar todo esto al pasar el indice como parametro, ej weaponAmmo[3] (municion de arma numero 3) [] +++
             weapon4_Ammo = ammo;
@@ -121,6 +124,7 @@ public class WeaponManager : MonoBehaviour
             weapon4_GO.RaycastReader(weaponDamage);
             //!! LLAMAR METODO DE RAYCAST CHECKER, o invokar evento de raycast check, y pasar variable daño (vía sin proyectiles), si este da positivo este efectuara el daño en el "other" 
             //!! ANIM AQUI
+            playerAnimator.SetTrigger("Pistol shooting"); //!! el tema es que es particular al revolver, deberia adaptarse al arma con que se disparó, ante eso en anim manager segun el arma equipada? o cada arma objeto tendria su metodo
         }
         else if (ammoIn <= 0) Debug.Log("El arma no tiene balas");
         else if (!delayReady) Debug.Log("No puedo disparar tan seguido");
@@ -137,38 +141,42 @@ public class WeaponManager : MonoBehaviour
 
     public void EquipWeapon(int index) //esto se llama desde el PLAYERCOLLISION al triggear el item, el metodo es public para que eso sea posible, pero estaria que sea evento + index []
     {
-        //desactivamos todas las armas para que no se superpongan; [] CONSIDERAR el tema de la conservacion de armas via GAMEMANAGER
-        DisableWeapons();
-
-        //activamos la primer arma
-        weapons[index].SetActive(true);
-
-        //indico el arma equipada actualmente, podria ser un evento anunciando el arma actual []
-        equippedItem = index;
-
-        //agrego el arma a la palma del player
-        weapons[index].transform.parent = playerHand; //reparenting!
-
-        //para ajustar la posicion del objeto en relacion al nuevo padre, ahora local
-        weapons[index].transform.localPosition = Vector3.zero;
-        weapons[index].transform.localScale = new Vector3(1f, 1f, 1f); //correccion por redimension de player creo?
-        weapons[index].transform.localRotation = Quaternion.Euler(0, 0, 0); //same
-
-        //temporal, deberia ser diferente usando objetos u otra solucion* 
-        switch (index)
+        if (index != equippedItem)
         {
-            case 0:
-                weapon1 = true;
-                break;
-            case 1:
-                weapon2 = true;
-                break;
-            case 2:
-                weapon3 = true;
-                break;
-            case 3:
-                weapon4 = true;
-                break;
+            //desactivamos todas las armas para que no se superpongan; [] CONSIDERAR el tema de la conservacion de armas via GAMEMANAGER
+            DisableWeapons();
+            if (!start) playerAnimator.Play("Pistol draw"); //!! podria ser mucho mejor [] al menos darle un delay al destroy/equip como para sumarle al efecto de recoger
+            if (start) start = false; //esto es un parche chancho para evitar la anim al levantarse, en otra situacion deberia irse
+            //activamos la primer arma
+            weapons[index].SetActive(true);
+
+            //indico el arma equipada actualmente, podria ser un evento anunciando el arma actual []
+            equippedItem = index;
+
+            //agrego el arma a la palma del player
+            weapons[index].transform.parent = playerHand; //reparenting!
+
+            //para ajustar la posicion del objeto en relacion al nuevo padre, ahora local
+            weapons[index].transform.localPosition = Vector3.zero;
+            weapons[index].transform.localScale = new Vector3(1f, 1f, 1f); //correccion por redimension de player creo?
+            weapons[index].transform.localRotation = Quaternion.Euler(0, 0, 0); //same
+
+            //temporal, deberia ser diferente usando objetos u otra solucion* 
+            switch (index)
+            {
+                case 0:
+                    weapon1 = true;
+                    break;
+                case 1:
+                    weapon2 = true;
+                    break;
+                case 2:
+                    weapon3 = true;
+                    break;
+                case 3:
+                    weapon4 = true;
+                    break;
+            }
         }
     }
 

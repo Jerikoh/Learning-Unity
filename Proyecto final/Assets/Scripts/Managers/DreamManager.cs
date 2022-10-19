@@ -13,6 +13,7 @@ public class DreamManager : MonoBehaviour
     [SerializeField] GameObject hallGO; //deberia aclarar a los materiales en la var en vez de a los GO jaja []
     [SerializeField] GameObject embodiedGO;
     [SerializeField] GameObject ophanimGO;
+    [SerializeField] GameObject playerCamera;
 
     [Header("Audio targets:")]
     [SerializeField] AudioSource audioBackground;
@@ -83,6 +84,8 @@ public class DreamManager : MonoBehaviour
 
     void Start()
     {
+        //desactivo este script para que no se mezclen trigger reactions
+
         //por seguridad ante problema con pulse
         hallGO.SetActive(false);
         embodiedGO.SetActive(false);
@@ -113,13 +116,16 @@ public class DreamManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (audioBackground.volume < 0.9f)
+        if (audioBackground.volume < 0.9f && !transformed)
         {
             audioBackground.volume += Time.fixedDeltaTime * volumeRiseSpeed;
         }
 
         if (contact)
         {
+            //apago el cam shake del caminar para que no colapse con el del ophanim
+            playerCamera.GetComponent<PerlinCameraShakeALT3>().enabled = false;
+
             if (embodied.GetFloat("_Power") > maxFallPow && transformed == false) //convertir en metodos para poder reutilizar []
             {
                 powEmbodied = embodied.GetFloat("_Power");
@@ -150,7 +156,7 @@ public class DreamManager : MonoBehaviour
             }
             if (ophanim.GetFloat("_Power") >= maxRisePow)
             {
-                ophanim.SetFloat("_Power", maxRisePow); 
+                ophanim.SetFloat("_Power", maxRisePow);
                 transFinished = true;
             }
         }
@@ -192,7 +198,7 @@ public class DreamManager : MonoBehaviour
 
     void EndingFlag()
     {
-        if(!ending) ShakeRestartMag?.Invoke();
+        if (!ending) ShakeRestartMag?.Invoke();
         ending = true;
     }
 
@@ -218,11 +224,11 @@ public class DreamManager : MonoBehaviour
             volumeOpExit.weight += Time.fixedDeltaTime * postpRiseSpeed; //deberia usar un rise/fallSpeed propio para cada efecto [] para mayor control
         }
         //bajando volumen al sonido de background y background oph
-        if (audioWindBlow.volume > 0f)
+        if (audioWindBlow.volume > 0f || audioOphanimBackground.volume > 0f || audioBackground.volume > 0f)
         {
-            audioOphanimBackground.volume -= Time.fixedDeltaTime * soundFallSpeed; //podria tener var propia de fallspeed
+            audioWindBlow.volume -= Time.fixedDeltaTime * soundFallSpeed; //deberian tener var propia de fallspeed cada uno
+            audioOphanimBackground.volume -= Time.fixedDeltaTime * soundFallSpeed;
             audioBackground.volume -= Time.fixedDeltaTime * soundFallSpeed;
-            audioWindBlow.volume -= Time.fixedDeltaTime * soundFallSpeed;
         }
         //bajando pitch al sonido de background
         if (audioOphanimBackground.pitch > 0.72f) //0.52f
@@ -231,7 +237,7 @@ public class DreamManager : MonoBehaviour
         }
 
         //llamando SceneLoad(); al comprobar que el sonido haya llegado a 0, no seria la mejor forma
-        if (audioWindBlow.volume <= 0f)
+        if (audioWindBlow.volume <= 0f && audioOphanimBackground.volume <= 0f && audioBackground.volume <= 0f)
         {
             SceneManager.LoadScene("Scene_1");
         }

@@ -39,6 +39,6 @@ Material:
     - _Speed: 0.5
     - _Tiling: 5
     m_Colors:
-    - _Colour: {r: 0, g: 0.3137255, b: 0.87058824, a: 1}
-    - _Origin: {r: -1.246645, g: 1.9811811, b: -24.56496, a: 0}
+    - _Colour: {r: 0.87058824, g: 0.67058825, b: 0, a: 1}
+    - _Origin: {r: 5.0112896, g: 1.8651814, b: -15.741487, a: 0}
   m_BuildTextureStacks: []

@@ -296,6 +296,7 @@ MonoBehaviour:
   hallGO: {fileID: 190916414}
   embodiedGO: {fileID: 774747916}
   ophanimGO: {fileID: 1436346813}
+  playerCamera: {fileID: 1395112711}
   audioBackground: {fileID: 205735443}
   audioEmbodied: {fileID: 1364214138}
   audioTransformation: {fileID: 2029914711}
@@ -322,7 +323,7 @@ MonoBehaviour:
   pingPongA: 1
   pingPongB: 0.2
   endingTimer: 22
-  powRiseSpeed: 0.07
+  powRiseSpeed: 0.071
   blendRiseSpeed: 0.06
   postpRiseSpeed: 0.25
   pitchFallSpeed: 0.015
@@ -953,7 +954,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622081739}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.44725895, y: 3.1835818, z: 183.79}
+  m_LocalPosition: {x: 0.44725895, y: 3.1835818, z: 184.27}
   m_LocalScale: {x: 32.961464, y: 1, z: 12.952}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1980,7 +1981,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  playerAnimator: {fileID: 0}
   playerHand: {fileID: 3382771655370694618}
+  weapon4_GO: {fileID: 0}
+  weapon4_AmmoIn: 0
+  weapon4_Ammo: 12
+  weapon4_Rounds: 6
+  weapon4_ReloadTime: 4
+  weapon4_FireDelayTime: 1
+  weapon4_Damage: 30
 --- !u!1 &1436346813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2940,9 +2949,7 @@ GameObject:
   - component: {fileID: 4782909964357991}
   - component: {fileID: 4782909964357989}
   - component: {fileID: 4782909964357988}
-  - component: {fileID: 9023501440807708028}
   - component: {fileID: 4782909964357987}
-  - component: {fileID: 9023501440807708027}
   - component: {fileID: 3212343007480907443}
   m_Layer: 0
   m_Name: Player
@@ -4405,7 +4412,7 @@ Animator:
   m_GameObject: {fileID: 1220570922628149}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5572a64bd7a852043ad459aa87aa5d10, type: 3}
-  m_Controller: {fileID: 9100000, guid: 3bf35df0d9ed51c49a904efbfbd32ac4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 709131e50c5548844a7c18768cbf13e5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -5113,13 +5120,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395112711}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 658b35219ed5f2d4a909ff8b0657f1e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frequency: 2
-  _translationMasterMagnitude: 4
+  _frequency: 3
+  _translationMasterMagnitude: 5
   _translateAxisX: 1
   _translateAxisY: 1
   _translateAxisZ: 0
@@ -5199,32 +5206,3 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4272903211153871820, guid: 2cf44068187735444ac60e5d413fd105, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2cf44068187735444ac60e5d413fd105, type: 3}
---- !u!114 &9023501440807708027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1220570922628149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 672c817aa8f3abb47b33ec794263da1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creatureDamageInterval: 1
-  creatureDamage: 20
-  weaponManagerGO: {fileID: 1412495808}
---- !u!114 &9023501440807708028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1220570922628149}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e303fd1a7567d142a94e0f1828cda12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInput: {fileID: 4782909964357989}
-  playerAnimator: {fileID: 4782909964357991}

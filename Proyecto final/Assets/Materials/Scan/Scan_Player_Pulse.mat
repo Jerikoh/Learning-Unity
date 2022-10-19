@@ -81,7 +81,7 @@ Material:
     - _MaskAmount: 0.5
     - _MaskHardness: 0.8
     - _MaskPower: 0.5
-    - _MaskRadius: 5.584604
+    - _MaskRadius: 3.0057926
     - _Metallic: 0
     - _Mode: 0
     - _MultiplyBlend: 0.3
@@ -95,7 +95,7 @@ Material:
     - _ScanTiling: 2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.6
+    - _Speed: 0.65
     - _SrcBlend: 1
     - _Tiling: 0.1
     - _UVSec: 0
