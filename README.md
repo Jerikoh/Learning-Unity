@@ -19,9 +19,8 @@
 //stay
 //quiet
 ```
-+ *Tres posibles orientaciones:* horror survival, horde survival, pve/pvp shooter.
++ *Tres posibles orientaciones:* horror survival, open world horror survival, pve/pvp shooter.
 + *Posibles fuentes de inspiración:* Outlast, Alien Isolation, Resident Evil 4, Dead Space -buscar mas scifi/space horror games-, no more room in hell, contagion, Obscure, cold fear, killing floor, nightmare of decay, evil within, silent hill 2, the forest, metro exodus, stalker, soma, cry of fear, lost in vivo, paratopic, madison, Yuki Onna, dusk, darkwood, lidar, alan wake, half life, blair witch, the medium, Gloomwood, Total Chaos, Divine Frequency, Cultic, Siren.
-+ *Escenarios posibles, en principios conceptuales:* highschool, forest, mansion, city, town...
 
 ### To-Do (organize):
 - Pulsos de sonar individuales, no contínuos; esto habilitaría a implementar algunas de las propuestas aquí listadas.
