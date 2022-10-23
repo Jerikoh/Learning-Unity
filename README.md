@@ -7,7 +7,7 @@
 > Progresos de mi primer juego, aka **ɴᴜʟʟ ꜱᴘᴀᴄᴇ** / **ᴅᴇɴꜱᴇʀ ʟɪɢʜᴛꜱ**.
 ##
 ### Build
-> Último build del proyecto en progreso.
+> Último build del proyecto en curso.
 [Descargar (Google Drive)](https://drive.google.com/drive/folders/1wmCVdZ-ly5E-kStmxGM_Eeb8T-aoVywp?usp=sharing)
 ##
 
