@@ -19,7 +19,7 @@
 //quiet
 ```
 + *Tres posibles orientaciones:* horror survival, horde survival, pve/pvp shooter.
-+ *Posibles fuentes de inspiración:* outlast, isolation, re4, dead space -buscar mas scifi/space horror games-, no more room in hell, contagion, obscure, cold fear, killing floor, nightmare of decay, evil within, silent hill 2, the forest, metro exodus, stalker, soma, cry of fear, lost in vivo, paratopic, madison, Yuki Onna, dusk, darkwood, lidar, alan wake, half life, blair witch, the medium, Gloomwood.
++ *Posibles fuentes de inspiración:* Outlast, Alien Isolation, Resident Evil 4, Dead Space -buscar mas scifi/space horror games-, no more room in hell, contagion, Obscure, cold fear, killing floor, nightmare of decay, evil within, silent hill 2, the forest, metro exodus, stalker, soma, cry of fear, lost in vivo, paratopic, madison, Yuki Onna, dusk, darkwood, lidar, alan wake, half life, blair witch, the medium, Gloomwood, Total Chaos, Divine Frequency, Cultic, Siren.
 + *Escenarios posibles, en principios conceptuales:* highschool, forest, mansion, city, town...
 
 ### To-Do (organize):
@@ -40,7 +40,7 @@
 + idem; se podria hacer manual el scanning, que sea como un "overheat", y que puedas manipular la amplitud y velocidad o algo asi en funcion de estos valores?
 //pero MP no serivira al ser desync, o si? pudiendo reaccionar a los disparos sorpresivos del otro? y pudiendo quedarte quieto para ser indetectable?
 + aplicar sistema sonido holofónico //ese era el término?
-+ quisiera que cuando la onda deja de pasar por encima de los objetos, sus mesh dejen de renderizarse, así la silueta de los objetos no se ve contra la onda recorriendo aquellos mas allá (?
++ quisiera que cuando la onda deja de pasar por encima de los objetos, sus mesh dejen de renderizarse, así la silueta de los objetos no se ve contra la onda recorriendo aquellos mas allá (? //vi uno que logró algo por el estilo
 + suavizar el movimiento de la cámara
 + ver como quedaría un DOF ? bloom y algo de motion blur
 + realmente quisiera con los scans solo se capture un flash/parpadeo/instantanea del momento 3d, y no que se siga percibiendo el movimiento de lo iluminado; quizá también que lo capturado persista un breve momento, como el fogonazo que queda en la visión tras un flash 

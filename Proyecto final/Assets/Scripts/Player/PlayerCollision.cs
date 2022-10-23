@@ -9,13 +9,17 @@ public class PlayerCollision : MonoBehaviour
     //creo que estos efectos deberian llevarse desde el enemigo/criatura, [] como que debe seguirse una logica efectuador->efectuado y la ejecucion de los efectos estar en el efectuador
     [SerializeField] float creatureDamageInterval = 1f;
     [SerializeField] int creatureDamage = 20;
-    [SerializeField][Range(0f,3f)] float pickupEquipDelay = 0.7f;
+    [SerializeField][Range(0f, 3f)] float pickupEquipDelay = 0.7f;
     bool canCollDamage = true;
     Collider otherLast;
 
     //para acceder al script del GO WeaponManager, no se si es la mejor forma [] hay otras cosas que usar de c# para esto?
     [SerializeField] GameObject weaponManagerGO;
     [SerializeField] Animator playerAnimator; //si me organizo mejor , esto podria ser un manager []
+    [SerializeField] SoundManager soundManagerGO; //tampoco deberia estar aqui []
+
+    //para evitar que se reiteren algunas "death lines"
+    bool playerAlive = true;
 
     //EVENTOS
     public static event Action EventPlayerDamage; //esto deberia ponerlo en un EventManager []
@@ -24,9 +28,13 @@ public class PlayerCollision : MonoBehaviour
     private void OnTriggerEnter(Collider other) //atenti a la diferencia Collider Collision, peligroso
     {
         otherLast = other;
-        other.GetComponent<SphereCollider>().enabled = false;
-        playerAnimator.SetTrigger("Pick-up"); //!! al menos darle un delay al destroy/equip como para sumarle al efecto de recoger
-        Invoke("DoPickup", pickupEquipDelay);
+        //other.GetComponent<SphereCollider>().enabled = false;
+        if (other.TryGetComponent(out SphereCollider sCollider)) //no se por que abajo funciona el "getcomponent?" y aca no //considerar que estaria reservando el spherecollider a los items pickeables
+        {
+            sCollider.enabled = false;
+            playerAnimator.SetTrigger("Pick-up"); //!! al menos darle un delay al destroy/equip como para sumarle al efecto de recoger
+            Invoke("DoPickup", pickupEquipDelay);
+        }
     }
 
     void DoPickup()
@@ -74,7 +82,7 @@ public class PlayerCollision : MonoBehaviour
             Invoke("ResetCollDamage", creatureDamageInterval);
             Invoke("DealCollDamage", 0); //esto no deberia ir antes del reset? probar []
 
-            other.gameObject.GetComponent<Animator>()?.SetTrigger("Bite"); //consulta si tiene componente, una alternativa al trygetcomponent, no se con que desventajas
+            other.gameObject.GetComponent<Animator>()?.SetTrigger("Bite"); //consulta si tiene componente, una alternativa al trygetcomponent, no se con que desventajas mas que no poder definir else y mas comandos
         }
     }
 
@@ -85,11 +93,13 @@ public class PlayerCollision : MonoBehaviour
 
     void DealCollDamage()
     {
-        if (GameManager.Health - creatureDamage <= 0)
+        if (GameManager.Health - creatureDamage <= 0 && playerAlive)
         {
+            playerAlive = false;
             GameManager.Health = 0;
             Invoke("DoDeath", 3f); //en realidad deberia hacer que los efectos en respuesta al evento tengan delay, y no ponerle delay al invoke del evento [] 
             playerAnimator.SetTrigger("Death"); //!! haria un "death manager", que efectue animaciones, fades, sonidos, UI, controller off, collider off, visibilidad off, scene restart []
+            soundManagerGO.PlayDeath();
             gameObject.GetComponent<VisionTarget>().visible = false;
             gameObject.GetComponent<InputManager>().enabled = false;
         }

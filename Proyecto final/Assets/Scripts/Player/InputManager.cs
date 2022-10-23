@@ -167,6 +167,11 @@ public class InputManager : MonoBehaviour
         {
             EventPlayerTrigger?.Invoke();
         }
+        //again, onShoot deberia ser onPlayerAttack
+         if (WeaponManager.EquippedItem == 2) 
+        {
+            playerAnimator.SetTrigger("Axe slash"); //!! temporal para darse una idea de la anim []
+        }
     }
 
     void onReload(InputAction.CallbackContext context)

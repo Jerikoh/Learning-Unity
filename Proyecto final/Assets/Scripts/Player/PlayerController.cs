@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float mouseSensitivity = 20f;
     float xRotation;
 
+    //para que al inicio de la escena no se mueva**, igual no corresponde ponerlo en el playercontroller sino en el scenemanager, pero tambien deberia suceder condicionalmente la animacion de entrada []
+    bool canMove = false;
+
     //para acceder al script del GO WeaponManager
     //[SerializeField] GameObject weaponManagerGO;
 
@@ -44,15 +47,17 @@ public class PlayerController : MonoBehaviour
         xVelHash = Animator.StringToHash("xVelocity");
         yVelHash = Animator.StringToHash("yVelocity");
 
+        Invoke("CanMove", 5f);
     }
-    void Update()
-    {
 
+    void CanMove()
+    {
+        canMove = true;
     }
 
     void FixedUpdate() //ya que estamos usando rigidbody
     {
-        Move();
+        if (canMove) Move();
     }
 
     void LateUpdate()

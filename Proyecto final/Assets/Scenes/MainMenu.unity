@@ -12853,8 +12853,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1929919138}
   m_HandleRect: {fileID: 1929919137}
   m_Direction: 2
-  m_Value: 1.0000002
-  m_Size: 0.4074115
+  m_Value: 1.0000001
+  m_Size: 0.20054698
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15729,6 +15729,7 @@ GameObject:
   - component: {fileID: 1227080988}
   - component: {fileID: 1227080990}
   - component: {fileID: 1227080989}
+  - component: {fileID: 1227080991}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -15753,8 +15754,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 567.45, y: -902.65}
-  m_SizeDelta: {x: 834.9, y: 1805.3}
+  m_AnchoredPosition: {x: 567.45, y: -1833.735}
+  m_SizeDelta: {x: 834.9, y: 3667.47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1227080989
 MonoBehaviour:
@@ -15778,29 +15779,97 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Gracias por testear la prueba de concepto de Denser Lights!\r\n\nEsta
     es una secci\xF3n dedicada a comentarios de desarrollo, observaciones y futuras
-    implementaciones.\n\n\n//Sobre la versi\xF3n actual:\nEl prop\xF3sito de este
-    build es explorar las posibilidades de la mec\xE1nica \"visi\xF3n de sonar\"
-    en el contexto de un horror survival game.\nActualmente, la segunda escena no
-    corresponde al nivel ni narrativa planeadas, siendo mas una muestra de las mec\xE1nicas
-    implementadas hasta el momento.\nNotar\xE1n -entre otras cosas- que la capacidad
-    de apuntar el arma se encuentra limitada (apuntando solo hacia el frente), dado
-    que a\xFAn no ha sido implementada la animaci\xF3n por IK.\nEn fin, subestim\xE9
-    el tiempo que conlleva implementar y pulir cada cosa, tendr\xE1n su momento!\n\n\n//Inspiraciones:\nResident
+    implementaciones.\r\n\r\n\r\n//Sobre la versi\xF3n actual:\r\nEl prop\xF3sito
+    de este build es explorar las posibilidades de la mec\xE1nica \"visi\xF3n de
+    sonar\" en el contexto de un horror survival game.\r\nActualmente, la segunda
+    escena no corresponde a la jugabilidad ni narrativa planeadas*, siendo mas una
+    muestra de las mec\xE1nicas implementadas hasta el momento.\r\nNotar\xE1n -entre
+    otras cosas- que la capacidad de apuntar el arma se encuentra limitada (apuntando
+    solo hacia el frente), dado que a\xFAn no ha sido implementada la animaci\xF3n
+    por IK.\r\nEn fin, subestim\xE9 el tiempo que conlleva implementar y pulir cada
+    cosa, tendr\xE1n su momento!\r\n*claro, despertar con un arma en la mano, a oscuras
+    y con un visor de pulsos asi como asi, no tiene sentido\r\n\r\n\r\n//Inspiraciones:\r\nResident
     Evil 4, Dead Space, Alien Isolation, Outlast, Soma, Contagion, Obscure, Silent
     Hill 2, The Evil Within, Cry of Fear, Lost in Vivo, Dusk, Nightmare of Decay,
-    Darkwood, The Forest, Half Life, Total Chaos, Divine Frequency, Cultic, Siren.\n\n\n//Otras
-    propuestas:\r\n\n\n//Algunos conflictos:\r\n\n\n//Bugs conocidos:\r\n- El modelo
-    del cuerpo del player en ocasiones aparece y desaparece.\n- Ante algunas colisiones
-    al correr el jugador sale volando.\n\n\n//Pr\xF3ximos cambios principales:\r\n-
-    Item arrojable que emita pulsos por un tiempo, a modo de flare.\r\n- Capacidades
-    de agacharse y asomarse ante paredes, estados que afectar\xEDan la capacidad
-    de detecci\xF3n enemiga.\r\n- Pulsos de sonar manuales e individuales, no autom\xE1ticos
-    ni cont\xEDnuos, cuyas variables (frecuencia y di\xE1metro) podamos definir manualmente,
-    con sus respectivos costos de energ\xEDa y \"overheat\".\n\n\n//Otros cambios
-    planeados:\n- M\xE1s enemimgos; stalker, climber, heavy, runner, possessed...
-    la est\xE9tica rondar\xEDa \"The Thing\" o \"Dead Space\".\r\n- Animaci\xF3nes
-    v\xEDa inverse kinematics.\r\n- Men\xFA de pausa; .\r\n- Implementar checkpoints.\n\n\nPara
-    contactarse: jerebizai@gmail.com"
+    Darkwood, The Forest, Half Life, Total Chaos, Divine Frequency, Cultic, Siren,
+    Scanner Sombre, Hidden Deep.\r\n\r\n\n//Bugs conocidos:\r\n- El modelo del cuerpo
+    del player en ocasiones aparece y desaparece.\r\n- Ante algunas colisiones al
+    correr, el jugador sale despedido y hasta atravieza objetos f\xEDsicos.\r\n...\r\n\r\n\r\n//Pr\xF3ximos
+    cambios principales:\r\n- Pulsos de sonar individuales, no cont\xEDnuos; esto
+    habilitar\xEDa a implementar algunas de las propuestas aqu\xED listadas.\r\n-
+    Poder definir manualmente de cada pulso su frecuencia y radio, con sus costes
+    de energ\xEDa y \"overheat\" proporcionales, donde tras cada pulso el dispositivo
+    deba \"enfriarse\" y si se genera antes otro pulso este consumir\xEDa mas energ\xEDa
+    en relacion al grado de sobrecalentamiento.\r\n- Sistema de stamina, para no
+    poder uir indefinidamente de algunos enemigos y tener que \"racionarla\".\r\n-
+    Tratando de reducir la presencia de UI, que la energ\xEDa disponible se indique
+    a traves del pitch de sonido de cada pulso (que en primer lugar deber\xEDa poder
+    emitir), disminuyendo a la par de la energ\xEDa; y el estado de salud, v\xEDa
+    efectos visuales y sonoros (screen shake y/o blur pulsantes con frecuencia relativa,
+    latidos sutiles, quejidos relativos al grado de da\xF1o, etc). Desde ya, har\xEDa
+    que la salud se muestre de forma cualitativa y no cuantitativa (mostrando un
+    \"estado\" de salud y no un n\xFAmero).\r\n- Item arrojable que emita pulsos
+    temporalmente en un rango, a modo de flare, que al agotarse su energ\xEDa debas
+    ir a buscarlo y recargarlo -no ser\xEDa descartable como una granada-, asign\xE1ndole
+    energ\xEDa del total de tu reserva.\r\n- Un tipo de proyectil quiz\xE1 para arco/ballesta
+    que revele su recorrido tras disparar, al emitir pulsos r\xE1pidamente en el
+    trayecto (en una distancia finita).\r\n- Capacidades de agacharse y asomarse
+    ante paredes, estados que afectar\xEDan la capacidad de detecci\xF3n enemiga
+    (menores velocidades y distancias de deteccion).\r\n- Lograr que el control del
+    radio de la pulsacion seria relativo a poder controlar el rango de vision y deteccion
+    (como caminar lento o agacharse).\r\n- Hacer que los enemigos, objetos recogibles,
+    se\xF1ales, etc. no \"brillen\" al ser escaneados, sino que su scan sea de un
+    color \"definidamente\" sobre su modelo.\r\n- Los items no deberian brillar constantemente,
+    sino ser revelados en el pulso/scan, requiriendo que el player est\xE9 atento
+    al entorno revelado en cada pulsacion.\r\n- Lo revelado por cada pulsacion, o
+    al menos items y/o enemigos, podrian permanecer mas tiempo visibles antes de
+    desvanecerse, y el scan solo deber\xEDa visualizar una \"instant\xE1nea\" del
+    momento 3d, no simplemente hacerlo visible en tiempo real (no deber\xEDa verse
+    el movimiento de lo revelado)que se siga percibiendo el movimiento de lo iluminado;
+    quiz\xE1 tambi\xE9n que lo capturado persista un breve momento.\r\n- Cada estado
+    y cambio de estado de criaturas -y player- deber\xEDa implicar un sonido y animaci\xF3n.\r\n-
+    Los items pickeables faltantes: flares, salud (tres grados), munici\xF3n (para
+    cada arma y uno completo), \"bater\xEDa\" (tres grados), llaves (comunes y para
+    casos especificos).\r\n- Men\xFA de pausa, que tenga: level restart, opciones
+    (con al menos capacidad para cambiar sensibilidad del mouse) salir al menu, salir
+    del juego. Con efecto fade-in blur y muteando background sound.\r\n- Grupos de
+    animaciones idle y en movimiento para player desarmado y armado con melee, entre
+    las que ir alternando segun lo equipado.\r\n...\r\n\r\n\r\n//Otros cambios planeados:\r\n-
+    Efectos al morir; un leve shake del \"death text\", se detiene un momento y antes
+    de respawn inicia uno mas de salida, sumando a un sonido de aturdimiento que
+    vuelve a la normalidad (algo como en CoD II). //recuperar un efecto parpadeante
+    del scan que se daba como \"bug\"\r\n- El pulso \"de sonar\" no deber\xEDa moverse
+    junto al jugador, sino que deber\xEDa permanecer en la posicion de origen, y
+    actualizarse en el pr\xF3ximo pulso.\r\n- Cuando la onda deja de pasar por encima
+    de los objetos, sus texturas deber\xEDan dejar de renderizarse o volverse transparentes,
+    as\xED la silueta de los objetos no \"iluminados\", no se superponen contra aquellos
+    iluminados por la onda. //se conseguiria con pointcloud + raycasting o emisi\xF3n
+    de part\xEDculas\r\n- Pulir y agregar estados de criaturas: idle, alerta, investigar,
+    buscar, chase, feed.\r\n- Actualmente la \"IA\" de criaturas, al perder de vista
+    al player durante unos segundos, retoma su ruta o posici\xF3n establecidas; estar\xEDa
+    bueno que genere waypoints al azar en cierto rango y se dirija hacia algunos
+    durante unos segundos, antes de volver a su ruta/posici\xF3n.\r\n- Sonido espacial
+    realista y adaptativo.\r\n- Recoger items e interactuar con otros de forma manual
+    y no al colisionar, mostrando tambi\xE9n un texto donde se diga de que se trata
+    el item, o no para que el player tenga que discernir e identificarlo por si mismo.\r\n-
+    M\xE1s enemimgos; stalker, climber, heavy, runner, possessed... la est\xE9tica
+    rondar\xEDa \"The Thing\" o \"Dead Space\".\r\n- Animaci\xF3nes v\xEDa inverse
+    kinematics.\r\n- Menu para confirmar respawn tras muerte.\r\n- Implementar checkpoints.\r\n-
+    Scroll down/up para rotar armas equipadas.\r\n- Sistema de inventario y selector
+    (estilo Half Life).\r\n- Los sonidos de los triggers correspondientes a la voz
+    del player deber\xEDan yacer \"en\" el player -por el posicionamiento sonoro-,
+    y deber\xEDan reproducirse de forma condicional (ej: que si estas en combate,
+    no se activen los sonidos gatillados al acercarte a las puertas, o que algunos
+    solo si los enemigos estan a X distancia, o si ya fueron reproducidos en X tiempo,
+    o si aun no sucedi\xF3 X cosa).\r\n- Enemy ragdolls.\r\n- Cambiar o pulir varios
+    sonidos y animaciones.\r\n- Hay cierto retraso en la reproducci\xF3n de los sonidos,
+    deber\xEDa ver como evitarlo.\r\n...\r\n\r\n\r\n//Optimizaciones planeadas:\r\n-
+    Homogeneizar texturas, ya que son innecesarias al ser invisibles.\r\n- Quitar
+    produccion de sombras e iluminaci\xF3n.\r\n- Implementar occlusion culling.\r\n-
+    Convertir en mp3 todos los archivos de audio.\r\n- Rehacer el \"spaghetti code\";
+    en varios scripts solo procur\xE9 que cumplan su funci\xF3n in-game, pasando
+    por alto si fue la forma mas \xF3ptima, escalable, reusable o legible de implementarlos.\r\n...\r\n\r\n\r\nEstoy
+    abierto a ideas y proyectos!: jerebizai@gmail.com"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d186f705b077b646adad14b6b3ce719, type: 2}
   m_sharedMaterial: {fileID: 3127148747690780588, guid: 1d186f705b077b646adad14b6b3ce719, type: 2}
@@ -15863,7 +15932,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: -2.5972595}
+  m_margin: {x: 0, y: 0, z: 0, w: -1486.0704}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -15877,6 +15946,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227080987}
   m_CullTransparentMesh: 1
+--- !u!114 &1227080991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227080987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1001 &1229406082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21678,6 +21761,7 @@ RectTransform:
   - {fileID: 2122068470}
   - {fileID: 1622296759}
   - {fileID: 1282557428}
+  - {fileID: 1779249122}
   m_Father: {fileID: 2000105903}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21698,7 +21782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33fdb8cb81b9aff41bea81e9848b4525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanMaterial: {fileID: 2100000, guid: 60a6be72fe3c87d438a8608cdc4bf2de, type: 2}
+  scanMaterial: {fileID: 2100000, guid: c1ff1921aa3aff848a141c52bea6b0b0, type: 2}
   audioBackground: {fileID: 1764827829}
   sceneLoadDelay: 5
   blendRiseSpeed: 0.2
@@ -23036,6 +23120,121 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4186837860859982, guid: c5dd55e1e8423f4429724c4651b02e65, type: 3}
   m_PrefabInstance: {fileID: 1770851175}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1779249121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1779249122}
+  - component: {fileID: 1779249126}
+  - component: {fileID: 1779249125}
+  - component: {fileID: 1779249124}
+  - component: {fileID: 1779249123}
+  m_Layer: 5
+  m_Name: ExitConf Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1779249122
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779249121}
+  m_LocalRotation: {x: -0, y: 0.13638942, z: -0, w: 0.99065536}
+  m_LocalPosition: {x: 0, y: 0, z: -257}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1680843296}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 15.678, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 1070.7971, y: -203}
+  m_SizeDelta: {x: 1385, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1779249123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779249121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
+--- !u!114 &1779249124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779249121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
+--- !u!114 &1779249125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779249121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1779249126
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779249121}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1001 &1788099210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23438,7 +23637,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -0.006800167, y: 0.0022583008}
-  m_SizeDelta: {x: 1385, y: 1805.3}
+  m_SizeDelta: {x: 1385, y: 3667.47}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1836851581
 MonoBehaviour:
@@ -23478,7 +23677,7 @@ MonoBehaviour:
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
 --- !u!1 &1839640034
 GameObject:
@@ -24888,7 +25087,7 @@ RectTransform:
   m_Father: {fileID: 85440931}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.59258854}
+  m_AnchorMin: {x: 0, y: 0.799453}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}

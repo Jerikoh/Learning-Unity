@@ -32,8 +32,10 @@ public class WeaponManager : MonoBehaviour
 
     //EVENTOS
     public static event Action EventPlayerShoot;
+    public static event Action EventPlayerReload; //!! por ahora actua puntualmente para el revolver [] **
 
-
+    [SerializeField] SoundManager soundManagerGO; //tampoco deberia estar aqui []
+    [SerializeField] UIFadeInOut textDialog; //tampoco deberia estar aqui []
 
     //ammo, mags, flares...
 
@@ -89,7 +91,7 @@ public class WeaponManager : MonoBehaviour
             ammo += ammoIn;
             ammoIn = 0;
             Debug.Log("Recargando...");
-            //!! ANIM AQUI
+            EventPlayerReload?.Invoke(); //!! **
             playerAnimator.SetTrigger("Pistol reload"); //!! lo mismo, es una anim propia del revolver y no comun a toda arma de fuego
             while (ammoIn < weaponRounds && ammo > 0) //seguro haya otra forma para recargar "progresivamente"
             {
@@ -103,7 +105,7 @@ public class WeaponManager : MonoBehaviour
         }
         else if (!reloadReady) Debug.Log("Estoy en eso");
         else if (ammoIn >= weaponRounds) Debug.Log("El arma está cargada");
-        else if (ammo <= 0) Debug.Log("No tengo mas munición");
+        else if (ammo <= 0) textDialog.Write("No tengo mas munición");
     }
 
     void DelayReady()
@@ -113,20 +115,24 @@ public class WeaponManager : MonoBehaviour
 
     void Shoot(int ammoIn, int weaponDamage, float delayTime)
     {
-        if (ammoIn > 0 && delayReady && reloadReady) //mas adelante, if weaponequipped es firegun? +++ []
+        if (delayReady && reloadReady) //mas adelante, if weaponequipped es firegun? +++ []
         {
-            ammoIn--;
-            weapon4_AmmoIn = ammoIn;
-            delayReady = false;
-            Invoke("DelayReady", delayTime);
-            EventPlayerShoot?.Invoke(); //para que escuchen shake, sonidos, anims, etc +++ [] 
-            Debug.Log("DISPARO EFECTUADO, ammoIn: " + weapon4_AmmoIn + ", totalammo: " + weapon4_Ammo);
-            weapon4_GO.RaycastReader(weaponDamage);
-            //!! LLAMAR METODO DE RAYCAST CHECKER, o invokar evento de raycast check, y pasar variable daño (vía sin proyectiles), si este da positivo este efectuara el daño en el "other" 
-            //!! ANIM AQUI
-            playerAnimator.SetTrigger("Pistol shooting"); //!! el tema es que es particular al revolver, deberia adaptarse al arma con que se disparó, ante eso en anim manager segun el arma equipada? o cada arma objeto tendria su metodo
+            soundManagerGO.PlayTrigger(); //!! again solo al caso del revolver, el sonido de pull trigger (deberia haber uno propio para cada arma)
+            if (ammoIn > 0)
+            {
+
+                ammoIn--;
+                weapon4_AmmoIn = ammoIn;
+                delayReady = false;
+                Invoke("DelayReady", delayTime);
+                EventPlayerShoot?.Invoke(); //para que escuchen shake, sonidos, anims, etc +++ [] 
+                Debug.Log("DISPARO EFECTUADO, ammoIn: " + weapon4_AmmoIn + ", totalammo: " + weapon4_Ammo);
+                weapon4_GO.RaycastReader(weaponDamage);
+                //!! LLAMAR METODO DE RAYCAST CHECKER, o invokar evento de raycast check, y pasar variable daño (vía sin proyectiles), si este da positivo este efectuara el daño en el "other"
+                playerAnimator.SetTrigger("Pistol shooting"); //!! el tema es que es particular al revolver, deberia adaptarse al arma con que se disparó, ante eso en anim manager segun el arma equipada? o cada arma objeto tendria su metodo
+            }
+            else if (ammoIn <= 0) textDialog.Write("El arma está descargada");
         }
-        else if (ammoIn <= 0) Debug.Log("El arma no tiene balas");
         else if (!delayReady) Debug.Log("No puedo disparar tan seguido");
         else if (!reloadReady) Debug.Log("Aún no terminé de recargar");
     }
