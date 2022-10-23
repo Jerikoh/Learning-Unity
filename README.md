@@ -1,20 +1,20 @@
 # Learning-Unity
 
 ### Folder: Desafíos
-> Ejercicios efectuados tras cada nuevo aprendizaje
+> Ejercicios efectuados tras cada nuevo aprendizaje.
 ##
 ### Folder: Proyecto Final
-> Progresos de mi primer juego, aka **ɴᴜʟʟ ꜱᴘᴀᴄᴇ** / **ᴅᴇɴꜱᴇʀ ʟɪɢʜᴛꜱ**
+> Progresos de mi primer juego, aka **ɴᴜʟʟ ꜱᴘᴀᴄᴇ** / **ᴅᴇɴꜱᴇʀ ʟɪɢʜᴛꜱ**.
 ##
 ### Build
-> Último build del proyecto en progreso
+> Último build del proyecto en progreso.
 [Descargar (Google Drive)](https://drive.google.com/drive/folders/1wmCVdZ-ly5E-kStmxGM_Eeb8T-aoVywp?usp=sharing)
 ##
 
 
 ```
 **ɴᴜʟʟ ꜱᴘᴀᴄᴇ** 
-//you have no context.
+//you have no context
 //press space
 //stay
 //quiet
