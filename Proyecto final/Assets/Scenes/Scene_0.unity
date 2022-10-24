@@ -2089,6 +2089,8 @@ MonoBehaviour:
   weapon4_ReloadTime: 4
   weapon4_FireDelayTime: 1
   weapon4_Damage: 30
+  soundManagerGO: {fileID: 0}
+  textDialog: {fileID: 0}
 --- !u!1 &1436346813
 GameObject:
   m_ObjectHideFlags: 0

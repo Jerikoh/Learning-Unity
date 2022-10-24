@@ -7,10 +7,17 @@ public class WeaponRaycastManager : MonoBehaviour
     [SerializeField] Transform shootOrigin; //sigo sin saber si es necesario o no poner el private o se toma naturalmente como tal al no poner nada
     [SerializeField][Range(1f, 20f)] float rayDistance; //para determinar la distancia del rayo, de ser necesario
 
+    //propio del nivel particular, no debería estar aqui []
+    bool firstContact = false;
+    [SerializeField][Range(1f, 10f)] float rayDistContact = 3f; //para determinar la distancia del rayo, de ser necesario
+    [SerializeField] SoundManager soundManagerGO; //tampoco deberia estar aqui []
 
     void Update()
     {
-        //RaycastReader(1);
+        if (!firstContact)
+        {
+            RaycastContact();
+        }
     }
 
     public void RaycastReader(int weaponDamage)
@@ -21,6 +28,20 @@ public class WeaponRaycastManager : MonoBehaviour
             if (hitted.transform.CompareTag("Enemy")) //pregunto si el tag de lo que chocó es el enemigo
             {
                 hitted.transform.gameObject.GetComponent<EnemyManager>().Damage(weaponDamage); // [] claro se podria hacer que pierda velocidad por vida total o temporal por daño reciente, que regenere tras x tiempo, que quede knock out, etc
+            }
+        }
+    }
+
+    public void RaycastContact()
+    {
+        RaycastHit contacted;
+        if (Physics.Raycast(shootOrigin.position, shootOrigin.forward, out contacted, rayDistContact))
+        {
+            if (contacted.transform.CompareTag("Enemy"))
+            {
+                firstContact = true;
+                soundManagerGO.PlayContact();
+                Debug.Log("CONTACTED");
             }
         }
     }

@@ -76,7 +76,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.CompareTag("Enemy") && canCollDamage)
+        if (other.gameObject.CompareTag("Enemy") && canCollDamage && GameManager.Health > 0)
         {
             canCollDamage = false;
             Invoke("ResetCollDamage", creatureDamageInterval);

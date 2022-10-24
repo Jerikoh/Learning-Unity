@@ -37,6 +37,9 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] SoundManager soundManagerGO; //tampoco deberia estar aqui []
     [SerializeField] UIFadeInOut textDialog; //tampoco deberia estar aqui []
 
+    //para que al inicio de la escena no intente disparar, igual no correspondería aqui, same thing en playercontroller []
+    bool canMove = false;
+
     //ammo, mags, flares...
 
     //ver si mas adelante sigo necesitando estas propiedades, sino eliminarlas [] o al menos los setters
@@ -56,6 +59,8 @@ public class WeaponManager : MonoBehaviour
 
         InputManager.EventPlayerTrigger += RevolverShoot;
         InputManager.EventPlayerReload += RevolverReload;
+
+        Invoke("CanMove", 5f);
     }
 
     void OnDisable()
@@ -64,13 +69,21 @@ public class WeaponManager : MonoBehaviour
         InputManager.EventPlayerReload -= RevolverReload;
     }
 
+    void CanMove()
+    {
+        canMove = true;
+        //textDialog.Write("¿Acaso desperté en otro sueño?", 2f);
+    }
+
     void RevolverShoot()
     {
+        if (!canMove) return;
         Shoot(weapon4_AmmoIn, weapon4_Damage, weapon4_FireDelayTime);
     }
 
     void RevolverReload()
     {
+        if (!canMove) return;
         WeaponReload(weapon4_AmmoIn, weapon4_Rounds, weapon4_Ammo, weapon4_ReloadTime);
     }
     //----------------------------------------------------------
@@ -104,8 +117,8 @@ public class WeaponManager : MonoBehaviour
             weapon4_AmmoIn = ammoIn;
         }
         else if (!reloadReady) Debug.Log("Estoy en eso");
-        else if (ammoIn >= weaponRounds) Debug.Log("El arma está cargada");
-        else if (ammo <= 0) textDialog.Write("No tengo mas munición");
+        else if (ammoIn >= weaponRounds) textDialog.Write("El arma está cargada", 2f);
+        else if (ammo <= 0) textDialog.Write("No tengo mas munición", 2f);
     }
 
     void DelayReady()
@@ -131,7 +144,7 @@ public class WeaponManager : MonoBehaviour
                 //!! LLAMAR METODO DE RAYCAST CHECKER, o invokar evento de raycast check, y pasar variable daño (vía sin proyectiles), si este da positivo este efectuara el daño en el "other"
                 playerAnimator.SetTrigger("Pistol shooting"); //!! el tema es que es particular al revolver, deberia adaptarse al arma con que se disparó, ante eso en anim manager segun el arma equipada? o cada arma objeto tendria su metodo
             }
-            else if (ammoIn <= 0) textDialog.Write("El arma está descargada");
+            else if (ammoIn <= 0) textDialog.Write("El arma está descargada [R]", 2f);
         }
         else if (!delayReady) Debug.Log("No puedo disparar tan seguido");
         else if (!reloadReady) Debug.Log("Aún no terminé de recargar");

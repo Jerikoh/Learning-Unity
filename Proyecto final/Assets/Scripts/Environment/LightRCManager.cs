@@ -5,9 +5,12 @@ using UnityEngine;
 public class LightRCManager : MonoBehaviour
 {
     [SerializeField] Transform originPoint1, endPoint1, originPoint2, endPoint2, originPoint3, endPoint3, originPoint4, endPoint4, lightPosition1, lightPosition2, lightPosition3, lightPosition4;
+    [SerializeField] UIFadeInOut textDialog;
     Transform actualOriginPoint, actualEndPoint, actualPosition;
-    bool flag1 = true; //esto es trampa
-    //bool flag2 = true;
+    bool flag1 = true;
+    bool flag2 = false;
+    bool flag3 = false;
+    bool flag4 = false;
 
     void Start() //para evitar esto podria setearlo arriba del llamado a teleportlights en cada instancia
     {
@@ -26,20 +29,29 @@ public class LightRCManager : MonoBehaviour
         if (Physics.Linecast(actualOriginPoint.position, actualEndPoint.position) && flag1)
         {
             flag1 = false;
+            flag2 = true;
             TeleportLights(originPoint2, endPoint2, lightPosition2);
             Debug.Log("lightPosition2");
         }
-        if (Physics.Linecast(actualOriginPoint.position, actualEndPoint.position) && !flag1)
+        if (Physics.Linecast(actualOriginPoint.position, actualEndPoint.position) && flag2)
         {
-            //flag2 = false;
+            flag2 = false;
+            flag3 = true;
             TeleportLights(originPoint3, endPoint3, lightPosition3);
             Debug.Log("lightPosition3");
         }
-      /*if (Physics.Linecast(actualOriginPoint.position, actualEndPoint.position) && !flag2) //podria hacer otra para que no repita esto, aunque no se note
+        if (Physics.Linecast(actualOriginPoint.position, actualEndPoint.position) && flag3)
         {
-            TeleportLights(originPoint4, originPoint4, lightPosition4);
+            flag3 = false;
+            flag4 = true;
+            TeleportLights(originPoint4, endPoint4, lightPosition4);
             Debug.Log("lightPosition4");
-        }*/
+        }
+        if (Physics.Linecast(actualOriginPoint.position, actualEndPoint.position) && flag4)
+        {
+            flag4 = false;
+            textDialog.Write("//DEV: Oh, si has llegado hasta aquí ya no hay mucho que ver! Las criaturas rondantes no me dejaban terminar este nivel, gracias por limpiar la zona!", 20f); //!!
+        }
     }
 
     void TeleportLights(Transform originPoint, Transform endPoint, Transform lightPosition)

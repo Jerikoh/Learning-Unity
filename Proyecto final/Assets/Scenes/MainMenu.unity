@@ -12854,7 +12854,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1929919137}
   m_Direction: 2
   m_Value: 1.0000001
-  m_Size: 0.20054698
+  m_Size: 0.19005854
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15754,8 +15754,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 567.45, y: -1833.735}
-  m_SizeDelta: {x: 834.9, y: 3667.47}
+  m_AnchoredPosition: {x: 567.45, y: -1934.93}
+  m_SizeDelta: {x: 834.9, y: 3869.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1227080989
 MonoBehaviour:
@@ -15782,19 +15782,19 @@ MonoBehaviour:
     implementaciones.\r\n\r\n\r\n//Sobre la versi\xF3n actual:\r\nEl prop\xF3sito
     de este build es explorar las posibilidades de la mec\xE1nica \"visi\xF3n de
     sonar\" en el contexto de un horror survival game.\r\nActualmente, la segunda
-    escena no corresponde a la jugabilidad ni narrativa planeadas*, siendo mas una
-    muestra de las mec\xE1nicas implementadas hasta el momento.\r\nNotar\xE1n -entre
-    otras cosas- que la capacidad de apuntar el arma se encuentra limitada (apuntando
-    solo hacia el frente), dado que a\xFAn no ha sido implementada la animaci\xF3n
-    por IK.\r\nEn fin, subestim\xE9 el tiempo que conlleva implementar y pulir cada
-    cosa, tendr\xE1n su momento!\r\n*claro, despertar con un arma en la mano, a oscuras
-    y con un visor de pulsos asi como asi, no tiene sentido\r\n\r\n\r\n//Inspiraciones:\r\nResident
-    Evil 4, Dead Space, Alien Isolation, Outlast, Soma, Contagion, Obscure, Silent
-    Hill 2, The Evil Within, Cry of Fear, Lost in Vivo, Dusk, Nightmare of Decay,
-    Darkwood, The Forest, Half Life, Total Chaos, Divine Frequency, Cultic, Siren,
-    Scanner Sombre, Hidden Deep.\r\n\r\n\n//Bugs conocidos:\r\n- El modelo del cuerpo
-    del player en ocasiones aparece y desaparece.\r\n- Ante algunas colisiones al
-    correr, el jugador sale despedido y hasta atravieza objetos f\xEDsicos.\r\n...\r\n\r\n\r\n//Pr\xF3ximos
+    escena no corresponde a la jugabilidad ni narrativa planeadas, siendo una muestra
+    de las mec\xE1nicas implementadas hasta el momento.\r\nNotar\xE1n -entre otras
+    cosas- que la capacidad de apuntar el arma se encuentra limitada (apuntando solo
+    hacia el frente), dado que a\xFAn no ha sido implementada la animaci\xF3n por
+    IK.\r\nEn fin, subestim\xE9 el tiempo que conlleva implementar y pulir cada cosa,
+    tendr\xE1n su momento!\r\n\r\n\r\n//Inspiraciones:\r\nResident Evil 4, Dead Space,
+    Alien Isolation, Outlast, Soma, Contagion, Obscure, Silent Hill 2, The Evil Within,
+    Cry of Fear, Lost in Vivo, Dusk, Nightmare of Decay, Darkwood, The Forest, Half
+    Life, Total Chaos, Divine Frequency, Cultic, Siren, Scanner Sombre, Hidden Deep.\r\n\r\r\n\r\n//Bugs
+    conocidos:\r\n- El modelo del cuerpo del player en ocasiones aparece y desaparece.\r\n-
+    Ante algunas colisiones al correr, el jugador sale despedido y hasta atravieza
+    objetos f\xEDsicos.\r\n- Algunos efectos var\xEDan mucho al pasar del editor
+    al build, mas all\xE1 de estar usando FixedUpdate, fixedTime, etc.\r\n...\r\n\r\n\r\n//Pr\xF3ximos
     cambios principales:\r\n- Pulsos de sonar individuales, no cont\xEDnuos; esto
     habilitar\xEDa a implementar algunas de las propuestas aqu\xED listadas.\r\n-
     Poder definir manualmente de cada pulso su frecuencia y radio, con sus costes
@@ -15861,15 +15861,20 @@ MonoBehaviour:
     y deber\xEDan reproducirse de forma condicional (ej: que si estas en combate,
     no se activen los sonidos gatillados al acercarte a las puertas, o que algunos
     solo si los enemigos estan a X distancia, o si ya fueron reproducidos en X tiempo,
-    o si aun no sucedi\xF3 X cosa).\r\n- Enemy ragdolls.\r\n- Cambiar o pulir varios
-    sonidos y animaciones.\r\n- Hay cierto retraso en la reproducci\xF3n de los sonidos,
-    deber\xEDa ver como evitarlo.\r\n...\r\n\r\n\r\n//Optimizaciones planeadas:\r\n-
-    Homogeneizar texturas, ya que son innecesarias al ser invisibles.\r\n- Quitar
-    produccion de sombras e iluminaci\xF3n.\r\n- Implementar occlusion culling.\r\n-
-    Convertir en mp3 todos los archivos de audio.\r\n- Rehacer el \"spaghetti code\";
-    en varios scripts solo procur\xE9 que cumplan su funci\xF3n in-game, pasando
-    por alto si fue la forma mas \xF3ptima, escalable, reusable o legible de implementarlos.\r\n...\r\n\r\n\r\nEstoy
-    abierto a ideas y proyectos!: jerebizai@gmail.com"
+    o si el jugador est\xE1 en X estado o tiene X cosa, o si aun no sucedi\xF3 X
+    cosa). //aunque estar\xEDa bueno que cree y/o posicione los audiosource en la
+    posicion del player/enemigo y los destruya tras reproducir, esto impactar\xEDa
+    en el rendimiento o en un delay de reproducci\xF3n? lo dudo //mismo caso para
+    los \"dialog triggers\"\r\n- Enemy ragdolls.\r\n- Cambiar o pulir varios sonidos
+    y animaciones.\r\n- Hay cierto retraso en la reproducci\xF3n de los sonidos,
+    deber\xEDa ver como evitarlo.\r\n- Da\xF1o por sangrado, mayor o menor seg\xFAn
+    el enemigo.\r\n...\r\n\r\n\r\n//Optimizaciones pr\xF3ximas:\r\n- Homogeneizar
+    texturas, ya que son innecesarias al ser invisibles.\r\n- Quitar produccion de
+    sombras e iluminaci\xF3n.\r\n- Implementar occlusion culling.\r\n- Convertir
+    en mp3 todos los archivos de audio.\r\n- Rehacer el \"spaghetti code\"; en varios
+    scripts solo procur\xE9 que cumplan su funci\xF3n in-game, pasando por alto si
+    fue la forma mas \xF3ptima, escalable, reusable o legible de implementarlos.\r\n...\r\n\r\n\r\nEstoy
+    abierto a nuevas ideas y proyectos: jerebizai@gmail.com\n\n\n\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d186f705b077b646adad14b6b3ce719, type: 2}
   m_sharedMaterial: {fileID: 3127148747690780588, guid: 1d186f705b077b646adad14b6b3ce719, type: 2}
@@ -23637,7 +23642,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -0.006800167, y: 0.0022583008}
-  m_SizeDelta: {x: 1385, y: 3667.47}
+  m_SizeDelta: {x: 1385, y: 3869.86}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1836851581
 MonoBehaviour:
@@ -25087,7 +25092,7 @@ RectTransform:
   m_Father: {fileID: 85440931}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.799453}
+  m_AnchorMin: {x: 0, y: 0.8099415}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
