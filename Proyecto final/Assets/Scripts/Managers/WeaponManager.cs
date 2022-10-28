@@ -13,12 +13,15 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] GameObject[] weapons;
     [SerializeField] Animator playerAnimator; //si me organizo mejor , esto podria ser un manager []
     [SerializeField] Transform playerHand;
+    [SerializeField] MeleeCollider revolverCollider; //estos dos debo hacerlos al no saber por que sus GO no escuchan eventos
+    [SerializeField] MeleeCollider hatchetCollider;
+
     private static int equippedItem = 5, flares = 0; //por ahora el 5 en equippedItem se usa como null, pero no deberia ser asi
     private static bool weapon1, weapon2, weapon3, weapon4;
 
     bool weaponReady = false; //al ser relativo al arma equipada, es comun a todas (?)
     bool delayReady = true;
-    bool reloadReady = true;
+    static bool reloadReady = true;
     bool start = true;
 
     //puntualmente para el revolver, de nuevo no deberia ser así* []
@@ -29,6 +32,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] float weapon4_ReloadTime = 4f;
     [SerializeField] float weapon4_FireDelayTime = 1f;
     [SerializeField] int weapon4_Damage = 30;
+    [SerializeField] int weapon4_MeleeDamage = 5;
 
     //EVENTOS
     public static event Action EventPlayerShoot;
@@ -38,7 +42,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] UIFadeInOut textDialog; //tampoco deberia estar aqui []
 
     //para que al inicio de la escena no intente disparar, igual no correspondería aqui, same thing en playercontroller []
-    bool canMove = false;
+    static bool canMove = false;
 
     //ammo, mags, flares...
 
@@ -48,6 +52,9 @@ public class WeaponManager : MonoBehaviour
     public static bool Weapon3 { get => weapon3; set => weapon3 = value; }
     public static bool Weapon4 { get => weapon4; set => weapon4 = value; }
     public static int EquippedItem { get => equippedItem; set => equippedItem = value; }
+    public static bool PlayerCanMove { get => canMove; set => canMove = value; }
+    public static bool PlayerReloadReady { get => reloadReady; set => reloadReady = value; }
+
     //public static int Ammo { get => ammo; set => ammo = value; }
     //public static int Mags { get => mags; set => mags = value; }
     //public static int Flares { get => flares; set => flares = value; }
@@ -59,6 +66,8 @@ public class WeaponManager : MonoBehaviour
 
         InputManager.EventPlayerTrigger += RevolverShoot;
         InputManager.EventPlayerReload += RevolverReload;
+        InputManager.EventPlayerPush += OnPush;
+        InputManager.EventPlayerSlash += OnSlash;
 
         Invoke("CanMove", 5f);
     }
@@ -67,6 +76,41 @@ public class WeaponManager : MonoBehaviour
     {
         InputManager.EventPlayerTrigger -= RevolverShoot;
         InputManager.EventPlayerReload -= RevolverReload;
+        InputManager.EventPlayerPush -= OnPush;
+        InputManager.EventPlayerSlash -= OnSlash;
+    }
+
+    void OnPush()
+    {
+        switch (equippedItem)
+        {
+            case 2:
+                hatchetCollider.DoPush();
+                break;
+            case 3:
+                revolverCollider.DoPush();
+                break;
+            default:
+                Debug.Log("Ningun arma equipada");
+                break;
+        }
+    }
+
+    void OnSlash()
+    {
+        if (!canMove) return;
+        switch (equippedItem)
+        {
+            case 2:
+                hatchetCollider.DoSlash();
+                break;
+            case 3:
+                revolverCollider.DoSlash();
+                break;
+            default:
+                Debug.Log("Ningun arma equipada");
+                break;
+        }
     }
 
     void CanMove()
@@ -133,7 +177,6 @@ public class WeaponManager : MonoBehaviour
             soundManagerGO.PlayTrigger(); //!! again solo al caso del revolver, el sonido de pull trigger (deberia haber uno propio para cada arma)
             if (ammoIn > 0)
             {
-
                 ammoIn--;
                 weapon4_AmmoIn = ammoIn;
                 delayReady = false;
@@ -168,7 +211,7 @@ public class WeaponManager : MonoBehaviour
             if (start) start = false; //esto es un parche chancho para evitar la anim al levantarse, en otra situacion deberia irse
             //activamos la primer arma
             weapons[index].SetActive(true);
-
+            soundManagerGO.PlayEquip();
             //indico el arma equipada actualmente, podria ser un evento anunciando el arma actual []
             equippedItem = index;
 

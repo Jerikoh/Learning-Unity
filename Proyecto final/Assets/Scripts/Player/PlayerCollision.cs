@@ -39,16 +39,19 @@ public class PlayerCollision : MonoBehaviour
 
     void DoPickup()
     {
+        soundManagerGO.PlayPickUp();
         //consumibles
         if (otherLast.gameObject.CompareTag("Pick-ups/Keys"))
         {
             Destroy(otherLast.gameObject);
             GameManager.Keys += 1;
+            soundManagerGO.PlayItemKeys();
         }
         if (otherLast.gameObject.CompareTag("Pick-ups/Tubs"))
         {
             Destroy(otherLast.gameObject);
             GameManager.Energy += 1f; //esto mas adelante deberia cambiar para hacerlo consumible de forma manual y no no-pickup []
+            soundManagerGO.PlayItemEnergy();
         }
         //armas
         //desde acá podría determinar la animacion tambien? para variar el idle holding melee/pistol/rifle, again no se si es la forma mas ordenada de hacerlo, pero me parece que pensandolo como eventos (pick up) esta bueno que se le asocie a este el acto de definir los efectos de agarrar tal cosa (cambio de animacion, modelo, etc); se podría pensar en tanto "QUÉ-CONQUÉ-COMO-CONQUIÉN-etc"

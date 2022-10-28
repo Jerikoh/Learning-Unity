@@ -20,7 +20,7 @@ public class WeaponRaycastManager : MonoBehaviour
         }
     }
 
-    public void RaycastReader(int weaponDamage)
+    public void RaycastReader(int weaponDamage) // [] debería poder pasarle otros parametros para pdoer usarlo con armas melee, como tipo de arma, distancia/alcance, etc (cosas que tambien podria pasarle al bicho desde aca, para que reaccione adecuadamente)
     {
         RaycastHit hitted;
         if (Physics.Raycast(shootOrigin.position, shootOrigin.forward, out hitted, rayDistance))

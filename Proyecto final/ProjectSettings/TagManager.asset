@@ -12,6 +12,8 @@ TagManager:
   - Pick-ups/Weapons/Revolver
   - Pick-ups/Weapons/Hatchet
   - Pick-ups/Weapons/Spanner
+  - Doors
+  - KeyDoor
   layers:
   - Default
   - TransparentFX

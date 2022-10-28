@@ -94,8 +94,8 @@ public class PlayerController : MonoBehaviour
         if (!hasAnimator) return;
 
         //aca captamos el input del inputmanager
-        var mouseX = inputManager.Look.x;
-        var mouseY = inputManager.Look.y;
+        var mouseX = inputManager.Look.x; //puedo usar Mathf.Lerp acá? [] para el smooth cam follow
+        var mouseY = inputManager.Look.y; 
 
         camera.position = cameraTarget.position;
 

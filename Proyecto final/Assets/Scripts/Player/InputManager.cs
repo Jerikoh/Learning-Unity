@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour
     public static event Action EventPlayerReload;
     public static event Action EventPlayerWalk;
     public static event Action EventPlayerRun;
+    public static event Action EventPlayerSlash;
+    public static event Action EventPlayerPush;
 
     //onShoot, onThrow, onMelee, onUse;
 
@@ -42,6 +44,8 @@ public class InputManager : MonoBehaviour
     //para el camera bobbing, ante la ausencia o mi ignorancia de un "while pressed" o "hold" action []
     bool walking = false;
     bool running = false;
+    //chanchada para habilitar melee, deberia ir al menos en weaponmanager []
+    bool delayReady = true;
 
     void Awake()
     {
@@ -160,6 +164,8 @@ public class InputManager : MonoBehaviour
 
     void onShoot(InputAction.CallbackContext context) // [] deberia ser onAttack, que invoke un evento PlayerAttack, que procese el efecto segun lo que tenga equipado
     {
+        if (!WeaponManager.PlayerCanMove) return;
+
         //!! PARA TEMA CAM SHAKE; ANTES DE INVOCAR ESTE EVENTO DEBERIA APAGAR EL COMPONENTE SHAKE ALT3 Y AL TERMINAR EL DISPARO REACTIVARLO, same para DMG
         //esto es para el overlap entre camera shakes scripts, para solucionar deberia unificar un valor y que cada uno procese el total en sus propios terminos []
 
@@ -168,14 +174,24 @@ public class InputManager : MonoBehaviour
             EventPlayerTrigger?.Invoke();
         }
         //again, onShoot deberia ser onPlayerAttack
-         if (WeaponManager.EquippedItem == 2) 
+        if (WeaponManager.EquippedItem == 2 && delayReady)
         {
+            delayReady = false;
+            Invoke("DelayReady", 0.4f); //tambien deberia poder controlarse desde el editor []
+            EventPlayerSlash?.Invoke();
             playerAnimator.SetTrigger("Axe slash"); //!! temporal para darse una idea de la anim []
         }
     }
 
+    void DelayReady()
+    {
+        delayReady = true;
+    }
+
     void onReload(InputAction.CallbackContext context)
     {
+        if (!WeaponManager.PlayerCanMove) return;
+
         if (WeaponManager.EquippedItem == 3) //!!
         {
             EventPlayerReload?.Invoke();
@@ -184,12 +200,17 @@ public class InputManager : MonoBehaviour
 
     void onSlash(InputAction.CallbackContext context)
     {
-        //llamar EVENTO de melee [] este onSlash con click derecho en realidad es un empujon para alejar o romper, y todas las armas lo tienen, el click izquierdo con armas melee es el que provoca mas daño
-        //EventPlayerSlash?.Invoke();
-        //tambien agregar el delay desde weaponmanager, daria que tenga stamina tambien []
-        if (WeaponManager.EquippedItem == 3)
+        if (!WeaponManager.PlayerCanMove) return;
+        if (!WeaponManager.PlayerReloadReady) return;
+
+        //llamar EVENTO de melee [] este con click derecho en realidad es un empujon para alejar o romper, y todas las armas lo tienen, el click izquierdo con armas melee es el que provoca mas daño (esto deberia ser OnSlash)
+        //tambien agregar el delay habilitador desde weaponmanager, daria que tenga stamina tambien []
+        if ((WeaponManager.EquippedItem == 3 || WeaponManager.EquippedItem == 2) && delayReady)
         {
-            playerAnimator.Play("pistol whip"); //anim si esta equipado el revolver []
+            delayReady = false;
+            Invoke("DelayReady", 0.3f); //tambien deberia poder controlarse desde el editor []
+            EventPlayerPush?.Invoke();
+            playerAnimator.Play("pistol whip"); //anim que deberia ser relativa al arma equipada con cual se golpea [] deberia haber un AnimManager escuchando y no efectuarse acá, asi como un EventManager al cual poder llamar desde cualquier lado
         }
     }
 

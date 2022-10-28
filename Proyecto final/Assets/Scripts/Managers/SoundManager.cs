@@ -7,6 +7,9 @@ public class SoundManager : MonoBehaviour
 {
     [Header("Player AudioSources:")]
     [SerializeField] AudioSource playerDeath;
+    [SerializeField] AudioSource playerBreathingIdle;
+    [SerializeField] AudioSource playerEquip;
+    [SerializeField] AudioSource playerPickUp;
     [SerializeField] AudioSource playerDamage1;
     [SerializeField] AudioSource playerDamage2;
     [SerializeField] AudioSource playerDamage3;
@@ -19,6 +22,11 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource revolverShoot;
     [SerializeField] AudioSource revolverReload;
     [SerializeField] AudioSource revolverPullTrigger;
+        [Header("Items AudioSources:")]
+    [SerializeField] AudioSource itemHealth;
+    [SerializeField] AudioSource itemAmmo;
+    [SerializeField] AudioSource itemEnergy;
+    [SerializeField] AudioSource itemKeys;
     /*
     [Header("Hatchet AudioSources:")]
     [Header("Creature AudioSources:")]
@@ -45,6 +53,8 @@ public class SoundManager : MonoBehaviour
         PlayerCollision.EventPlayerDamage += PlayDamage;
         EnemyManager.enemyDeath += PlaySecondKill; //el orden de los llamados importa! sino se ejecutan todos en una sola invocacion; sino deberian responder a eventos distintos, o a un contador de killed enemies (if == 2 then)
         EnemyManager.enemyDeath += PlayFirstKill;
+
+        playerBreathingIdle.PlayDelayed(5f);
     }
 
     void OnDisable()
@@ -63,6 +73,7 @@ public class SoundManager : MonoBehaviour
 
     void PlayShoot()
     {
+        revolverShoot.pitch = UnityEngine.Random.Range(0.7f, 1f);
         revolverShoot.Play();
     }
 
@@ -110,5 +121,35 @@ public class SoundManager : MonoBehaviour
     public void PlayPanic()
     {
         panic.Play();
+    }
+
+    public void PlayPickUp()
+    {
+        playerPickUp.Play();
+    }
+
+    public void PlayEquip()
+    {
+        playerEquip.Play();
+    }
+
+    public void PlayItemHealth()
+    {
+        itemHealth.Play();
+    }
+
+    public void PlayItemAmmo()
+    {
+        itemAmmo.Play();
+    }
+
+    public void PlayItemEnergy()
+    {
+        itemEnergy.Play();
+    }
+
+    public void PlayItemKeys()
+    {
+        itemKeys.Play();
     }
 }
