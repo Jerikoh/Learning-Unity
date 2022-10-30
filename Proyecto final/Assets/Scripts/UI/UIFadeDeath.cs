@@ -15,6 +15,7 @@ public class UIFadeDeath : MonoBehaviour
     {
         canvas = GetComponent<CanvasGroup>();
         PlayerCollision.EventPlayerDeath += FadeStart;
+        LightRCManager.EventEnding += FadeStart;
     }
 
     void Update()
@@ -45,5 +46,6 @@ public class UIFadeDeath : MonoBehaviour
     void OnDisable()
     {
         PlayerCollision.EventPlayerDeath -= FadeStart;
+        LightRCManager.EventEnding -= FadeStart;
     }
 }

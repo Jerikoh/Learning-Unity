@@ -16,6 +16,7 @@ public class ColliderAuxPush : MonoBehaviour
         {
             other.transform.gameObject.GetComponent<EnemyManager>().Damage(5); //aca al menos deberia agarrar el valor desde una propiedad de MeleeCollider
             meleeCollider.PushDamageDone();
+            audioPushed.pitch = UnityEngine.Random.Range(0.7f, 0.9f);
             audioPushed.Play();
             Debug.Log("PUSHEADO");
         }

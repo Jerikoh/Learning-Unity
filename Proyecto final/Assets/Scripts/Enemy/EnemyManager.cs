@@ -26,6 +26,9 @@ public class EnemyManager : MonoBehaviour
     public static event Action enemyDeath;
 
     float regularRunSpeed;
+    static bool isStunned = false;
+
+    public static bool IsStunned { get => isStunned; set => isStunned = value; }
 
     void Start()
     {
@@ -47,17 +50,20 @@ public class EnemyManager : MonoBehaviour
             //if (health <= 80 && health > 60) creatureDamage1.Play(); //este calculo deberia trabajar sobre porcentaje del total de vida, y ademas, hacerse antes de la resta de vida []
             //if (health <= 60 && health > 40) creatureDamage2.Play();
             //if (health <= 40 && health > 20) creatureDamage3.Play();
+            creatureDamage2.pitch = UnityEngine.Random.Range(0.75f, 1f);
             creatureDamage2.Play();
 
             Debug.Log("ENEMY HITTED, hp: " + health);
 
             //ya que no consegui anim aplico un stunned
+            isStunned = true;
             creatureAnimator.SetBool("Walking", false);
             gameObject.GetComponent<Enemy>().run_speed = 0f; //aca deberia usar corrutinas? []
             Invoke("StunnedReset", stunnedTime); // claro estaria bueno que la velocidad haga un fade y no sea instantaneo el cambio []
         }
         else if (health - weaponDamage <= 0)
         {
+            creatureDeath.pitch = UnityEngine.Random.Range(0.75f, 1f);
             creatureDeath.Play();
             Kill();
         }
@@ -65,6 +71,7 @@ public class EnemyManager : MonoBehaviour
 
     void StunnedReset()
     {
+        isStunned = false;
         creatureAnimator.SetBool("Walking", true);
         gameObject.GetComponent<Enemy>().run_speed = regularRunSpeed;
     }
@@ -93,6 +100,7 @@ public class EnemyManager : MonoBehaviour
 
     void PlayAttack()
     {
+        creatureAttack.pitch = UnityEngine.Random.Range(0.75f, 1f);
         creatureAttack.Play();
     }
 }

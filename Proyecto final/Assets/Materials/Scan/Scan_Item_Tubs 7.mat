@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Scan_Red
+  m_Name: Scan_Item_Tubs 7
   m_Shader: {fileID: 4800000, guid: 34f449e1093a9fb498ea2cd79f1a4af5, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -31,14 +31,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _Mask: 1
-    - _MaskHardness: 0.5
+    - _MaskHardness: 0.8
     - _MaskPower: 0.9
-    - _MaskRadius: 0.9
-    - _MultiplyBlend: 1
+    - _MaskRadius: 0.25
+    - _MultiplyBlend: 0
     - _Power: 0
-    - _Speed: 0
-    - _Tiling: 0.2
+    - _Speed: 0.5
+    - _Tiling: 5
     m_Colors:
-    - _Colour: {r: 1, g: 0, b: 0, a: 1}
-    - _Origin: {r: 0.98700047, g: -5.632999, b: -24.411999, a: 0}
+    - _Colour: {r: 0, g: 0.3154678, b: 0.87058824, a: 1}
+    - _Origin: {r: 9.914579, g: 9.137175, b: -15.706949, a: 0}
   m_BuildTextureStacks: []

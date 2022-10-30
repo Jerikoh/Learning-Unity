@@ -16,7 +16,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] MeleeCollider revolverCollider; //estos dos debo hacerlos al no saber por que sus GO no escuchan eventos
     [SerializeField] MeleeCollider hatchetCollider;
 
-    private static int equippedItem = 5, flares = 0; //por ahora el 5 en equippedItem se usa como null, pero no deberia ser asi
+    private static int equippedItem = 5, flares = 0, lastEquipped; //por ahora el 5 en equippedItem se usa como null, pero no deberia ser asi
     private static bool weapon1, weapon2, weapon3, weapon4;
 
     bool weaponReady = false; //al ser relativo al arma equipada, es comun a todas (?)
@@ -26,8 +26,8 @@ public class WeaponManager : MonoBehaviour
 
     //puntualmente para el revolver, de nuevo no deberia ser así* []
     [SerializeField] WeaponRaycastManager weapon4_GO;
-    [SerializeField] int weapon4_AmmoIn = 0; //starting
-    [SerializeField] int weapon4_Ammo = 12; //starting
+    static int weapon4_AmmoIn = 0; 
+    static int weapon4_Ammo = 0; 
     [SerializeField] int weapon4_Rounds = 6;
     [SerializeField] float weapon4_ReloadTime = 4f;
     [SerializeField] float weapon4_FireDelayTime = 1f;
@@ -54,6 +54,9 @@ public class WeaponManager : MonoBehaviour
     public static int EquippedItem { get => equippedItem; set => equippedItem = value; }
     public static bool PlayerCanMove { get => canMove; set => canMove = value; }
     public static bool PlayerReloadReady { get => reloadReady; set => reloadReady = value; }
+    public static int LastEquipped { get => lastEquipped; set => lastEquipped = value; }
+    public static int Weapon4_Ammo { get => weapon4_Ammo; set => weapon4_Ammo = value; }
+    public static int Weapon4_AmmoIn { get => weapon4_AmmoIn; set => weapon4_AmmoIn = value; }
 
     //public static int Ammo { get => ammo; set => ammo = value; }
     //public static int Mags { get => mags; set => mags = value; }
@@ -62,6 +65,7 @@ public class WeaponManager : MonoBehaviour
     //----------------------------------------------------------AUXILIAR/TEMPORAL (ante este build improvizado con solo revolver)
     void Start()
     {
+        canMove = false;
         EquipWeapon(3); //solo para demostracion[]
 
         InputManager.EventPlayerTrigger += RevolverShoot;
@@ -116,7 +120,6 @@ public class WeaponManager : MonoBehaviour
     void CanMove()
     {
         canMove = true;
-        //textDialog.Write("¿Acaso desperté en otro sueño?", 2f);
     }
 
     void RevolverShoot()
@@ -162,7 +165,7 @@ public class WeaponManager : MonoBehaviour
         }
         else if (!reloadReady) Debug.Log("Estoy en eso");
         else if (ammoIn >= weaponRounds) textDialog.Write("El arma está cargada", 2f);
-        else if (ammo <= 0) textDialog.Write("No tengo mas munición", 2f);
+        else if (ammo <= 0) textDialog.Write("No tengo munición", 2f);
     }
 
     void DelayReady()
@@ -213,6 +216,7 @@ public class WeaponManager : MonoBehaviour
             weapons[index].SetActive(true);
             soundManagerGO.PlayEquip();
             //indico el arma equipada actualmente, podria ser un evento anunciando el arma actual []
+            lastEquipped = equippedItem;
             equippedItem = index;
 
             //agrego el arma a la palma del player

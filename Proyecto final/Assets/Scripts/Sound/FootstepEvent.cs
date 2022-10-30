@@ -16,7 +16,7 @@ public class FootstepEvent : MonoBehaviour
         speedPerSec = Vector3.Distance(oldPosition, transform.position) / Time.deltaTime;
         oldPosition = transform.position;
 
-        if (speedPerSec > 0.95f)
+        if (speedPerSec > 1f)
         {
             isMoving = true;
         }

@@ -7,16 +7,23 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     //creo que estos efectos deberian llevarse desde el enemigo/criatura, [] como que debe seguirse una logica efectuador->efectuado y la ejecucion de los efectos estar en el efectuador
+    [Header("Creature damage:")]
     [SerializeField] float creatureDamageInterval = 1f;
     [SerializeField] int creatureDamage = 20;
+    [Header("Pick-up stats:")]
     [SerializeField][Range(0f, 3f)] float pickupEquipDelay = 0.7f;
     bool canCollDamage = true;
     Collider otherLast;
+    //
+    [SerializeField] int ammoPackRounds = 6;
+    [SerializeField] int pillHealthPoints = 30;
 
     //para acceder al script del GO WeaponManager, no se si es la mejor forma [] hay otras cosas que usar de c# para esto?
+    [Header("Accesos:")]
     [SerializeField] GameObject weaponManagerGO;
     [SerializeField] Animator playerAnimator; //si me organizo mejor , esto podria ser un manager []
     [SerializeField] SoundManager soundManagerGO; //tampoco deberia estar aqui []
+    [SerializeField] UIFadeInOut textDialog;
 
     //para evitar que se reiteren algunas "death lines"
     bool playerAlive = true;
@@ -31,9 +38,22 @@ public class PlayerCollision : MonoBehaviour
         //other.GetComponent<SphereCollider>().enabled = false;
         if (other.TryGetComponent(out SphereCollider sCollider)) //no se por que abajo funciona el "getcomponent?" y aca no //considerar que estaria reservando el spherecollider a los items pickeables
         {
-            sCollider.enabled = false;
-            playerAnimator.SetTrigger("Pick-up"); //!! al menos darle un delay al destroy/equip como para sumarle al efecto de recoger
-            Invoke("DoPickup", pickupEquipDelay);
+            if (otherLast.gameObject.CompareTag("Pick-ups/Health")) //esto no está optimizado, hay repetición mas adelante [] ++
+            {
+                if (GameManager.Health < 100)
+                {
+                    sCollider.enabled = false;
+                    playerAnimator.SetTrigger("Pick-up");
+                    Invoke("DoPickup", pickupEquipDelay);
+                }
+                else textDialog.Write("No estoy herida", 2.5f);
+            }
+            else
+            {
+                sCollider.enabled = false;
+                playerAnimator.SetTrigger("Pick-up");
+                Invoke("DoPickup", pickupEquipDelay);
+            }
         }
     }
 
@@ -52,6 +72,19 @@ public class PlayerCollision : MonoBehaviour
             Destroy(otherLast.gameObject);
             GameManager.Energy += 1f; //esto mas adelante deberia cambiar para hacerlo consumible de forma manual y no no-pickup []
             soundManagerGO.PlayItemEnergy();
+        }
+        if (otherLast.gameObject.CompareTag("Pick-ups/Ammo"))
+        {
+            Destroy(otherLast.gameObject);
+            WeaponManager.Weapon4_Ammo += ammoPackRounds;
+            soundManagerGO.PlayItemAmmo();
+        }
+        if (otherLast.gameObject.CompareTag("Pick-ups/Health"))
+        {
+            GameManager.Health += pillHealthPoints;
+            if (GameManager.Health > 100) GameManager.Health = 100;
+            Destroy(otherLast.gameObject);
+            soundManagerGO.PlayItemHealth();
         }
         //armas
         //desde acá podría determinar la animacion tambien? para variar el idle holding melee/pistol/rifle, again no se si es la forma mas ordenada de hacerlo, pero me parece que pensandolo como eventos (pick up) esta bueno que se le asocie a este el acto de definir los efectos de agarrar tal cosa (cambio de animacion, modelo, etc); se podría pensar en tanto "QUÉ-CONQUÉ-COMO-CONQUIÉN-etc"
@@ -96,6 +129,7 @@ public class PlayerCollision : MonoBehaviour
 
     void DealCollDamage()
     {
+        if (EnemyManager.IsStunned) return;
         if (GameManager.Health - creatureDamage <= 0 && playerAlive)
         {
             playerAlive = false;
@@ -117,11 +151,14 @@ public class PlayerCollision : MonoBehaviour
     void DoDeath()
     {
         //esto es un intento de fix ante error al recargar nivel tras muerte
+        GameManager.Health = 0;
         WeaponManager.Weapon1 = false;
         WeaponManager.Weapon2 = false;
         WeaponManager.Weapon3 = false;
         WeaponManager.Weapon4 = false;
         WeaponManager.EquippedItem = 5;
+        WeaponManager.Weapon4_Ammo = 0;
+        WeaponManager.Weapon4_AmmoIn = 0;
 
         EventPlayerDeath?.Invoke(); //invoco el evento si es que alguien escucha
     }

@@ -32,7 +32,9 @@ public class PlayerController : MonoBehaviour
     float xRotation;
 
     //para que al inicio de la escena no se mueva**, igual no corresponde ponerlo en el playercontroller sino en el scenemanager, pero tambien deberia suceder condicionalmente la animacion de entrada []
-    bool canMove = false;
+    static bool canMove = false;
+
+    public static bool CanPlayerMove { get => canMove; set => canMove = value; }
 
     //para acceder al script del GO WeaponManager
     //[SerializeField] GameObject weaponManagerGO;

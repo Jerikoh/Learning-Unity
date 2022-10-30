@@ -16,6 +16,9 @@ public class DeathPlaneKill : MonoBehaviour
             WeaponManager.Weapon3 = false;
             WeaponManager.Weapon4 = false;
             WeaponManager.EquippedItem = 5;
+            WeaponManager.Weapon4_Ammo = 0;
+            WeaponManager.Weapon4_AmmoIn = 0;
+            
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }

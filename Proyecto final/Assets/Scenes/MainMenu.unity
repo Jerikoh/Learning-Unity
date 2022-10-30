@@ -15777,104 +15777,134 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Gracias por testear la prueba de concepto de Denser Lights!\r\n\nEsta
+  m_text: "Gracias por jugar la prueba de concepto de Denser Lights!\r\n\r\nEsta
     es una secci\xF3n dedicada a comentarios de desarrollo, observaciones y futuras
     implementaciones.\r\n\r\n\r\n//Sobre la versi\xF3n actual:\r\nEl prop\xF3sito
-    de este build es explorar las posibilidades de la mec\xE1nica \"visi\xF3n de
-    sonar\" en el contexto de un horror survival game.\r\nActualmente, la segunda
-    escena no corresponde a la jugabilidad ni narrativa planeadas, siendo una muestra
-    de las mec\xE1nicas implementadas hasta el momento.\r\nNotar\xE1n -entre otras
-    cosas- que la capacidad de apuntar el arma se encuentra limitada (apuntando solo
-    hacia el frente), dado que a\xFAn no ha sido implementada la animaci\xF3n por
-    IK.\r\nEn fin, subestim\xE9 el tiempo que conlleva implementar y pulir cada cosa,
-    tendr\xE1n su momento!\r\n\r\n\r\n//Inspiraciones:\r\nResident Evil 4, Dead Space,
-    Alien Isolation, Outlast, Soma, Contagion, Obscure, Silent Hill 2, The Evil Within,
-    Cry of Fear, Lost in Vivo, Dusk, Nightmare of Decay, Darkwood, The Forest, Half
-    Life, Total Chaos, Divine Frequency, Cultic, Siren, Scanner Sombre, Hidden Deep.\r\n\r\r\n\r\n//Bugs
+    de este build es explorar la mec\xE1nica de \"visi\xF3n de sonar\" en el marco
+    de un horror survival game.\r\nActualmente, la segunda escena no corresponde
+    a la jugabilidad ni narrativa deseadas, siendo una muestra de algunas mec\xE1nicas
+    principales.\r\nNotar\xE1n -entre otras cosas- que la capacidad de apuntar el
+    arma se encuentra limitada (apuntando solo hacia el frente), dado que a\xFAn
+    no ha sido implementada la animaci\xF3n por IK.\r\nEn fin, subestim\xE9 el tiempo
+    que conlleva implementar y pulir cada cosa, tendr\xE1n su momento!\r\n\r\n\r\n//Posibles
+    inspiraciones:\r\nResident Evil 4, Dead Space, Alien Isolation, Outlast, Soma,
+    Contagion, Obscure, Silent Hill 2, The Evil Within, Cry of Fear, Lost in Vivo,
+    Dusk, Nightmare of Decay, Darkwood, The Forest, Half Life, Total Chaos, Divine
+    Frequency, Cultic, Siren, Scanner Sombre, Hidden Deep.\r\n\r\n\r\n//Bugs y defectos
     conocidos:\r\n- El modelo del cuerpo del player en ocasiones aparece y desaparece.\r\n-
-    Ante algunas colisiones al correr, el jugador sale despedido y hasta atravieza
-    objetos f\xEDsicos.\r\n- Algunos efectos var\xEDan mucho al pasar del editor
-    al build, mas all\xE1 de estar usando FixedUpdate, fixedTime, etc.\r\n...\r\n\r\n\r\n//Pr\xF3ximos
-    cambios principales:\r\n- Pulsos de sonar individuales, no cont\xEDnuos; esto
-    habilitar\xEDa a implementar algunas de las propuestas aqu\xED listadas.\r\n-
-    Poder definir manualmente de cada pulso su frecuencia y radio, con sus costes
-    de energ\xEDa y \"overheat\" proporcionales, donde tras cada pulso el dispositivo
-    deba \"enfriarse\" y si se genera antes otro pulso este consumir\xEDa mas energ\xEDa
-    en relacion al grado de sobrecalentamiento.\r\n- Sistema de stamina, para no
-    poder uir indefinidamente de algunos enemigos y tener que \"racionarla\".\r\n-
-    Tratando de reducir la presencia de UI, que la energ\xEDa disponible se indique
-    a traves del pitch de sonido de cada pulso (que en primer lugar deber\xEDa poder
-    emitir), disminuyendo a la par de la energ\xEDa; y el estado de salud, v\xEDa
-    efectos visuales y sonoros (screen shake y/o blur pulsantes con frecuencia relativa,
-    latidos sutiles, quejidos relativos al grado de da\xF1o, etc). Desde ya, har\xEDa
-    que la salud se muestre de forma cualitativa y no cuantitativa (mostrando un
-    \"estado\" de salud y no un n\xFAmero).\r\n- Item arrojable que emita pulsos
-    temporalmente en un rango, a modo de flare, que al agotarse su energ\xEDa debas
-    ir a buscarlo y recargarlo -no ser\xEDa descartable como una granada-, asign\xE1ndole
-    energ\xEDa del total de tu reserva.\r\n- Un tipo de proyectil quiz\xE1 para arco/ballesta
+    Los \"parches negros\" en este mismo texto.\n- Ante algunas colisiones, el jugador
+    sale despedido por el aire y hasta atravieza objetos f\xEDsicos.\r\n- Algunos
+    efectos var\xEDan al pasar del editor al build, a\xFAn usando o no FixedUpdate,
+    deltaTime, etc.\r\n- La IA te detecta a traves de las paredes en un rango peque\xF1o.\r\n-
+    Al realizar ataques melee, se ve parte de la cabeza del avatar.\r\n- Se puede
+    correr hacia los lados y hacia atr\xE1s.\r\n- Sonidos con delay, desincronizados
+    con la acci\xF3n; tambi\xE9n animaciones con acciones.\r\n- Mientras se recarga
+    dejan de sonar las pisadas.\r\n\r\n\r\n//Pr\xF3ximos cambios principales:\r\n-
+    Pulsos de sonar individuales, no cont\xEDnuos; esto habilitar\xEDa a implementar
+    algunas de las propuestas aqu\xED listadas.\r\n- Poder definir manualmente de
+    cada pulso su frecuencia y radio, con sus costes de energ\xEDa y \"overheat\"
+    proporcionales, donde tras cada pulso el dispositivo deba \"enfriarse\" y si
+    se genera antes otro pulso este consumir\xEDa mas energ\xEDa en relacion al grado
+    de sobrecalentamiento.\r\n- Item arrojable que emita pulsos temporalmente en
+    un rango, a modo de flare, que al agotarse su energ\xEDa debas ir a buscarlo
+    y recargarlo -no ser\xEDa descartable como una granada-, asign\xE1ndole energ\xEDa
+    del total de tu reserva.\r\n- Un tipo de proyectil quiz\xE1 para arco/ballesta
     que revele su recorrido tras disparar, al emitir pulsos r\xE1pidamente en el
     trayecto (en una distancia finita).\r\n- Capacidades de agacharse y asomarse
     ante paredes, estados que afectar\xEDan la capacidad de detecci\xF3n enemiga
     (menores velocidades y distancias de deteccion).\r\n- Lograr que el control del
     radio de la pulsacion seria relativo a poder controlar el rango de vision y deteccion
-    (como caminar lento o agacharse).\r\n- Hacer que los enemigos, objetos recogibles,
-    se\xF1ales, etc. no \"brillen\" al ser escaneados, sino que su scan sea de un
-    color \"definidamente\" sobre su modelo.\r\n- Los items no deberian brillar constantemente,
-    sino ser revelados en el pulso/scan, requiriendo que el player est\xE9 atento
-    al entorno revelado en cada pulsacion.\r\n- Lo revelado por cada pulsacion, o
-    al menos items y/o enemigos, podrian permanecer mas tiempo visibles antes de
-    desvanecerse, y el scan solo deber\xEDa visualizar una \"instant\xE1nea\" del
-    momento 3d, no simplemente hacerlo visible en tiempo real (no deber\xEDa verse
-    el movimiento de lo revelado)que se siga percibiendo el movimiento de lo iluminado;
-    quiz\xE1 tambi\xE9n que lo capturado persista un breve momento.\r\n- Cada estado
-    y cambio de estado de criaturas -y player- deber\xEDa implicar un sonido y animaci\xF3n.\r\n-
-    Los items pickeables faltantes: flares, salud (tres grados), munici\xF3n (para
-    cada arma y uno completo), \"bater\xEDa\" (tres grados), llaves (comunes y para
-    casos especificos).\r\n- Men\xFA de pausa, que tenga: level restart, opciones
-    (con al menos capacidad para cambiar sensibilidad del mouse) salir al menu, salir
-    del juego. Con efecto fade-in blur y muteando background sound.\r\n- Grupos de
-    animaciones idle y en movimiento para player desarmado y armado con melee, entre
-    las que ir alternando segun lo equipado.\r\n...\r\n\r\n\r\n//Otros cambios planeados:\r\n-
-    Efectos al morir; un leve shake del \"death text\", se detiene un momento y antes
-    de respawn inicia uno mas de salida, sumando a un sonido de aturdimiento que
-    vuelve a la normalidad (algo como en CoD II). //recuperar un efecto parpadeante
-    del scan que se daba como \"bug\"\r\n- El pulso \"de sonar\" no deber\xEDa moverse
-    junto al jugador, sino que deber\xEDa permanecer en la posicion de origen, y
-    actualizarse en el pr\xF3ximo pulso.\r\n- Cuando la onda deja de pasar por encima
-    de los objetos, sus texturas deber\xEDan dejar de renderizarse o volverse transparentes,
-    as\xED la silueta de los objetos no \"iluminados\", no se superponen contra aquellos
-    iluminados por la onda. //se conseguiria con pointcloud + raycasting o emisi\xF3n
-    de part\xEDculas\r\n- Pulir y agregar estados de criaturas: idle, alerta, investigar,
-    buscar, chase, feed.\r\n- Actualmente la \"IA\" de criaturas, al perder de vista
-    al player durante unos segundos, retoma su ruta o posici\xF3n establecidas; estar\xEDa
-    bueno que genere waypoints al azar en cierto rango y se dirija hacia algunos
-    durante unos segundos, antes de volver a su ruta/posici\xF3n.\r\n- Sonido espacial
-    realista y adaptativo.\r\n- Recoger items e interactuar con otros de forma manual
-    y no al colisionar, mostrando tambi\xE9n un texto donde se diga de que se trata
-    el item, o no para que el player tenga que discernir e identificarlo por si mismo.\r\n-
-    M\xE1s enemimgos; stalker, climber, heavy, runner, possessed... la est\xE9tica
-    rondar\xEDa \"The Thing\" o \"Dead Space\".\r\n- Animaci\xF3nes v\xEDa inverse
-    kinematics.\r\n- Menu para confirmar respawn tras muerte.\r\n- Implementar checkpoints.\r\n-
-    Scroll down/up para rotar armas equipadas.\r\n- Sistema de inventario y selector
-    (estilo Half Life).\r\n- Los sonidos de los triggers correspondientes a la voz
-    del player deber\xEDan yacer \"en\" el player -por el posicionamiento sonoro-,
-    y deber\xEDan reproducirse de forma condicional (ej: que si estas en combate,
-    no se activen los sonidos gatillados al acercarte a las puertas, o que algunos
-    solo si los enemigos estan a X distancia, o si ya fueron reproducidos en X tiempo,
-    o si el jugador est\xE1 en X estado o tiene X cosa, o si aun no sucedi\xF3 X
-    cosa). //aunque estar\xEDa bueno que cree y/o posicione los audiosource en la
-    posicion del player/enemigo y los destruya tras reproducir, esto impactar\xEDa
-    en el rendimiento o en un delay de reproducci\xF3n? lo dudo //mismo caso para
-    los \"dialog triggers\"\r\n- Enemy ragdolls.\r\n- Cambiar o pulir varios sonidos
-    y animaciones.\r\n- Hay cierto retraso en la reproducci\xF3n de los sonidos,
-    deber\xEDa ver como evitarlo.\r\n- Da\xF1o por sangrado, mayor o menor seg\xFAn
-    el enemigo.\r\n...\r\n\r\n\r\n//Optimizaciones pr\xF3ximas:\r\n- Homogeneizar
-    texturas, ya que son innecesarias al ser invisibles.\r\n- Quitar produccion de
-    sombras e iluminaci\xF3n.\r\n- Implementar occlusion culling.\r\n- Convertir
-    en mp3 todos los archivos de audio.\r\n- Rehacer el \"spaghetti code\"; en varios
-    scripts solo procur\xE9 que cumplan su funci\xF3n in-game, pasando por alto si
-    fue la forma mas \xF3ptima, escalable, reusable o legible de implementarlos.\r\n...\r\n\r\n\r\nEstoy
-    abierto a nuevas ideas y proyectos: jerebizai@gmail.com\n\n\n\n\n\n"
+    (como caminar lento o agacharse).\r\n- Tratando de reducir la presencia de UI,
+    que la energ\xEDa disponible se indique a traves del pitch de sonido de cada
+    pulso (que en primer lugar deber\xEDa poder emitir), disminuyendo a la par de
+    la energ\xEDa; y el estado de salud, v\xEDa efectos visuales y sonoros (screen
+    shake y/o blur pulsantes con frecuencia relativa, latidos sutiles, quejidos relativos
+    al grado de da\xF1o, etc). Desde ya, har\xEDa que la salud se muestre de forma
+    cualitativa y no cuantitativa (mostrando un \"estado\" de salud y no un n\xFAmero),
+    tambi\xE9n podr\xEDa usar otro set de animaciones \"injured\".\r\n- Hacer que
+    los enemigos, objetos recogibles, se\xF1ales, etc. no \"brillen\" al ser escaneados,
+    sino que su scan sea de un color \"definidamente\" sobre su modelo.\r\n- Los
+    items no deberian brillar constantemente, sino ser revelados en el pulso/scan,
+    requiriendo que el player est\xE9 atento al entorno revelado en cada pulsacion.\r\n-
+    Lo revelado por cada pulsacion, o al menos items y/o enemigos, podrian permanecer
+    mas tiempo visibles antes de desvanecerse, y el scan solo deber\xEDa visualizar
+    una \"instant\xE1nea\" del momento 3d, no simplemente hacerlo visible en tiempo
+    real (no deber\xEDa verse el movimiento de lo revelado)que se siga percibiendo
+    el movimiento de lo iluminado; quiz\xE1 tambi\xE9n que lo capturado persista
+    un breve momento.\r\n- Sistema de stamina, para no poder uir indefinidamente
+    de algunos enemigos y tener que \"racionarla\". //tambi\xE9n pensando en melee\r\n-
+    Cada estado y cambio de estado de criaturas -y player- deber\xEDa implicar un
+    sonido y animaci\xF3n.\r\n- Los items pickeables faltantes: flares, salud (tres
+    grados), munici\xF3n (para cada arma y uno completo), \"bater\xEDa\" (tres grados),
+    llaves (comunes y para casos especificos).\r\n- Men\xFA de pausa, que tenga:
+    level restart, opciones (con al menos capacidad para cambiar sensibilidad del
+    mouse) salir al menu, salir del juego. Con efecto fade-in blur y muteando background
+    sound.\r\n- Grupos de animaciones idle y en movimiento para player desarmado
+    y armado con melee, entre las que ir alternando segun lo equipado.\r\n- Poder
+    consultar la munici\xF3n disponible y no visualizarla en el HUD constantemente.\r\n-
+    Prolongar el tiempo de recarga del arma, deber\xEDa ser un tiempo de vulnerabilidad
+    que se deba iniciar a conciencia.\r\n- Quedarse sin energ\xEDa -del pulso- por
+    mucho tiempo deber\xEDa tener consecuencias fatales; podrian haber criaturas
+    que siempre est\xE9n al acecho, escondiendose fuera del FOV del player, y que
+    solo ataquen al estar fuera del FOV y/o con el pulso bajo. Tambi\xE9n estos podr\xEDan
+    espantarse por los pulsos y ser lo que los mantiene a raya.\r\n- La precisi\xF3n
+    del disparo deber\xEDa reducirse durante un breve tiempo tras disparar, para
+    no poder eliminar enemigos con tanta facilidad al spammear el click.\r\n- No
+    deber\xEDa poder recoger los items habiendo llegado al nivel m\xE1ximo de reserva
+    respectivo.\r\n\r\n\r\n//Otros cambios planeados:\r\n- Que las battery pick-ups
+    y estaciones de recarga emitan un sonido constante, para que al momente de ir
+    casi a ciegas por el mapa -por bater\xEDa baja- se de una modalidad de \"frio-caliente\"
+    para encontrarlas.\r\n- Caracterizar cada sector del mapa con un sonido regular
+    o constante propio, para tener mas pistas sobre su posicion actual (servir\xEDa
+    sobre todo para cuando se tenga \"bater\xEDa\" baja); los props ayudar\xEDan
+    de misma forma.\r\n- Efectos al morir; un leve shake del \"death text\", se detiene
+    un momento y antes de respawn inicia uno mas de salida, sumando a un sonido de
+    aturdimiento que vuelve a la normalidad (algo como en CoD II). //recuperar un
+    efecto parpadeante del scan que se daba como \"bug\"\r\n- El pulso \"de sonar\"
+    no deber\xEDa moverse junto al jugador, sino que deber\xEDa permanecer en la
+    posicion de origen, y actualizarse en el pr\xF3ximo pulso.\r\n- Cuando la onda
+    deja de pasar por encima de los objetos, sus texturas deber\xEDan dejar de renderizarse
+    o volverse transparentes, as\xED la silueta de los objetos no \"iluminados\",
+    no se superponen contra aquellos iluminados por la onda. //se conseguiria con
+    pointcloud + raycasting o emisi\xF3n de part\xEDculas\r\n- Pulir y agregar estados
+    de criaturas: idle, alerta, investigar, buscar, chase, feed.\r\n- Actualmente
+    la \"IA\" de criaturas, al perder de vista al player durante unos segundos, retoma
+    su ruta o posici\xF3n establecidas; estar\xEDa bueno que genere waypoints al
+    azar en cierto rango y se dirija hacia algunos durante unos segundos, antes de
+    volver a su ruta/posici\xF3n.\r\n- Cuando entras en el FOV lejano de una criatura,
+    esta entra en estado de alerta antes de entrar en estado de chase tras mantenerse
+    en su FOV un tiempo, y si sales este tiempo se resetea; el tiempo deberia hacer
+    un countdown y no resetearse.\r\n- Sonido espacial realista y adaptativo.\r\n-
+    Recoger items e interactuar con otros de forma manual y no al colisionar, mostrando
+    tambi\xE9n un texto donde se diga de que se trata el item, o no para que el player
+    tenga que discernir e identificarlo por si mismo.\r\n- M\xE1s enemimgos; stalker,
+    climber, heavy, runner, possessed... la est\xE9tica rondar\xEDa \"The Thing\"
+    o \"Dead Space\".\r\n- Animaci\xF3nes v\xEDa inverse kinematics.\r\n- Menu para
+    confirmar respawn tras muerte.\r\n- Implementar checkpoints.\r\n- Scroll down/up
+    para rotar armas equipadas.\r\n- Sistema de inventario y selector (estilo Half
+    Life).\r\n- Los sonidos de los triggers correspondientes a la voz del player
+    deber\xEDan yacer \"en\" el player -por el posicionamiento sonoro-, y deber\xEDan
+    reproducirse de forma condicional (ej: que si estas en combate, no se activen
+    los sonidos gatillados al acercarte a las puertas, o que algunos solo si los
+    enemigos estan a X distancia, o si ya fueron reproducidos en X tiempo, o si el
+    jugador est\xE1 en X estado o tiene X cosa, o si aun no sucedi\xF3 X cosa). //aunque
+    estar\xEDa bueno que cree y/o posicione los audiosource en la posicion del player/enemigo
+    y los destruya tras reproducir, esto impactar\xEDa en el rendimiento o en un
+    delay de reproducci\xF3n? lo dudo //mismo caso para los \"dialog triggers\"\r\n-
+    Enemy ragdolls.\r\n- Cambiar o pulir varios sonidos y animaciones.\r\n- Hay cierto
+    retraso en la reproducci\xF3n de los sonidos, deber\xEDa ver como evitarlo.\r\n-
+    Da\xF1o por sangrado, mayor o menor seg\xFAn el enemigo.\r\n- Turning animations.\r\n\r\n\r\n//Optimizaciones
+    a implementar:\r\n- Homogeneizar texturas, ya que son innecesarias al ser invisibles.\r\n-
+    Quitar produccion de sombras e iluminaci\xF3n.\r\n- Implementar occlusion culling.\r\n-
+    Convertir en mp3 todos los archivos de audio.\r\n- Rehacer el \"spaghetti code\";
+    en varios scripts solo procur\xE9 que cumplan su funci\xF3n in-game, pasando
+    por alto si fue la forma mas \xF3ptima, escalable, reusable o legible de implementarlos.\r\n-
+    Las armas que se \"reparentan\" para equiparse, deber\xEDan yacer con el jugador
+    desactivadas (actualmente est\xE1n activas en una parte inaccesible del mapa).\r\n-
+    Eliminar partes no visibles del mapa.\r\n- Hacer el \"audio footstep manager\"
+    todo en uno y no en scripts separados, evitando invocar eventos innecesariamente.
+    //aunque dudo que tenga un impacto significativo\r\n\r\n\r\nEstoy abierto a nuevas
+    ideas y proyectos!: jerebizai@gmail.com\n\n\n\n\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d186f705b077b646adad14b6b3ce719, type: 2}
   m_sharedMaterial: {fileID: 3127148747690780588, guid: 1d186f705b077b646adad14b6b3ce719, type: 2}
@@ -15901,8 +15931,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 21
+  m_fontSizeBase: 21
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -21793,7 +21823,7 @@ MonoBehaviour:
   blendRiseSpeed: 0.2
   volumeRiseSpeed: 0.2
   volumeFallSpeed: 0.1
-  exitGameDelay: 3.5
+  exitGameDelay: 2.5
 --- !u!114 &1680843298
 MonoBehaviour:
   m_ObjectHideFlags: 0

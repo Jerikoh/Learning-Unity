@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class InputManager : MonoBehaviour
     public bool Equip2 { get; private set; }
     public bool Equip3 { get; private set; }
     public bool Equip4 { get; private set; }
+    public bool Pause { get; private set; }
 
     //ref o hook de cada tipo, para acceder al input map y a cada input action individual
     InputActionMap currentMap;
@@ -36,7 +38,7 @@ public class InputManager : MonoBehaviour
     InputAction moveAction;
     InputAction lookAction;
     InputAction runAction;
-    InputAction useAction, shootAction, reloadAction, slashAction, equip1Action, equip2Action, equip3Action, equip4Action;
+    InputAction useAction, shootAction, reloadAction, slashAction, equip1Action, equip2Action, equip3Action, equip4Action, pauseAction;
 
     //para acceder al script del GO WeaponManager, siento que no es muy organizado conectarlo al inputmanager
     [SerializeField] GameObject weaponManagerGO;
@@ -65,6 +67,7 @@ public class InputManager : MonoBehaviour
         equip2Action = currentMap.FindAction("Equip weapon 2");
         equip3Action = currentMap.FindAction("Equip weapon 3");
         equip4Action = currentMap.FindAction("Equip weapon 4");
+        pauseAction = currentMap.FindAction("Pause");
 
         //aca suscribimos cada funcion callback a cada input action, hacemos que cuando sucede tal accion suceda el metodo especificado, como cualquier evento
         moveAction.performed += onMove;
@@ -78,6 +81,7 @@ public class InputManager : MonoBehaviour
         equip2Action.performed += onEquip2;
         equip3Action.performed += onEquip3;
         equip4Action.performed += onEquip4;
+        pauseAction.performed += onPause;
 
         //performed es cuando el keybinding empieza y canceled cuando termina, tambien esta waiting, started y disabled (y otras mas generales)
         moveAction.canceled += onMove;
@@ -214,6 +218,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    /* ESTAS SON LAS CORRECTAS, por ahora se aplicó esto ante no poder usar el scroll del mouse (no sabría por que no aparece en la lista de inputs)
     void onEquip1(InputAction.CallbackContext context)
     {
         if (!WeaponManager.Weapon1) return;
@@ -224,6 +229,18 @@ public class InputManager : MonoBehaviour
     {
         if (!WeaponManager.Weapon2) return;
         weaponManagerGO.GetComponent<WeaponManager>().EquipWeapon(1);
+    }
+    */
+    void onEquip1(InputAction.CallbackContext context)
+    {
+        if (!WeaponManager.Weapon4) return;
+        weaponManagerGO.GetComponent<WeaponManager>().EquipWeapon(3);
+    }
+
+    void onEquip2(InputAction.CallbackContext context)
+    {
+        if (!WeaponManager.Weapon3) return;
+        weaponManagerGO.GetComponent<WeaponManager>().EquipWeapon(2);
     }
 
     void onEquip3(InputAction.CallbackContext context)
@@ -236,6 +253,20 @@ public class InputManager : MonoBehaviour
     {
         if (!WeaponManager.Weapon4) return;
         weaponManagerGO.GetComponent<WeaponManager>().EquipWeapon(3);
+    }
+
+    void onPause(InputAction.CallbackContext context)
+    {
+        //aca deberia invocar evento escuchado por un deathmanager, en vez de repetir todo ya 3 veces []
+        GameManager.Health = 0;
+        WeaponManager.Weapon1 = false;
+        WeaponManager.Weapon2 = false;
+        WeaponManager.Weapon3 = false;
+        WeaponManager.Weapon4 = false;
+        WeaponManager.EquippedItem = 5;
+        WeaponManager.Weapon4_Ammo = 0;
+        WeaponManager.Weapon4_AmmoIn = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     //para evitar posibles problemas

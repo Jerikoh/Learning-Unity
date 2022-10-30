@@ -15,7 +15,7 @@ public class DoorKey : MonoBehaviour
             EventKeyDoorOpen?.Invoke();
             GameManager.Keys--;
             keyDoorOpen.Play();
-            Invoke("Desactivate", 0.5f);
+            Invoke("Desactivate", 0.3f);
         }
     }
 

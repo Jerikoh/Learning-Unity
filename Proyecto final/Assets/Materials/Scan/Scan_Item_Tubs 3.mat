@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Scan_Item_Tubs
+  m_Name: Scan_Item_Tubs 3
   m_Shader: {fileID: 4800000, guid: 34f449e1093a9fb498ea2cd79f1a4af5, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -40,5 +40,5 @@ Material:
     - _Tiling: 5
     m_Colors:
     - _Colour: {r: 0, g: 0.3154678, b: 0.87058824, a: 1}
-    - _Origin: {r: -11.320421, g: 1.5051742, b: -15.628507, a: 0}
+    - _Origin: {r: -11.667421, g: 6.136174, b: -15.442507, a: 0}
   m_BuildTextureStacks: []

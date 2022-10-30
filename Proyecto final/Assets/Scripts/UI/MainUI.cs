@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class MainUI : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class MainUI : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+
         audioBackground.volume = 0f;
     }
 
@@ -40,6 +44,7 @@ public class MainUI : MonoBehaviour
             {
                 audioBackground.volume -= Time.fixedDeltaTime * volumeFallSpeed;
             }
+            Debug.Log("fading");
         }
     }
 

@@ -16,6 +16,7 @@ public class ColliderAuxSlash : MonoBehaviour
         {
             other.transform.gameObject.GetComponent<EnemyManager>().Damage(40); //aca al menos deberia agarrar el valor desde una propiedad de MeleeCollider
             meleeCollider.SlashDamageDone();
+            audioSlashed.pitch = UnityEngine.Random.Range(0.7f, 0.9f);
             audioSlashed.Play();
             Debug.Log("SLASHEADO");
         }

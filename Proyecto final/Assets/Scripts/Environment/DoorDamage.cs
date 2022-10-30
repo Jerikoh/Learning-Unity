@@ -14,6 +14,7 @@ public class DoorDamage : MonoBehaviour
     [Header("Door AudioSources:")]
     [SerializeField] AudioSource doorDamage;
     [SerializeField] AudioSource doorDeath;
+    [SerializeField] AudioSource yeahPlayer;
 
     public static event Action DoorDestroyed;
 
@@ -22,13 +23,16 @@ public class DoorDamage : MonoBehaviour
         if (health - weaponDamage > 0)
         {
             health -= weaponDamage;
+            doorDamage.pitch = UnityEngine.Random.Range(0.8f, 1f);
             doorDamage.Play();
 
             Debug.Log("DOOR HITTED, hp: " + health);
         }
         else if (health - weaponDamage <= 0)
         {
+            doorDamage.pitch = UnityEngine.Random.Range(0.8f, 1f);
             doorDamage.Play();
+            doorDeath.pitch = UnityEngine.Random.Range(0.8f, 1f);
             doorDeath.Play();
             DoorDestroyed?.Invoke();
             Invoke("Desactivate", 0.5f);
@@ -38,5 +42,9 @@ public class DoorDamage : MonoBehaviour
     void Desactivate()
     {
         gameObject.SetActive(false);
+        if (isOfKeyRoom)
+        {
+            yeahPlayer.Play();
+        }
     }
 }
