@@ -44,16 +44,17 @@ public class LightRCManager : MonoBehaviour
             audioRegularBG.volume -= Time.fixedDeltaTime * 0.1f; //podria ser editable []
         }
 
-        if (allDead && flag5 && audioPostBG.volume < 0.55f)
-        {
-            audioPostBG.Play();
-            audioPostBG.volume += Time.fixedDeltaTime * 0.1f; //podria ser editable []
-        }
-
         if (allDead && audioFightBG.volume > 0f)
         {
-            audioFightBG.volume -= Time.fixedDeltaTime * 0.1f; //podria ser editable []
+            audioFightBG.volume -= Time.fixedDeltaTime * 0.03f; //podria ser editable []
         }
+
+        if (allDead && flag5 && audioPostBG.volume < 0.55f && audioFightBG.volume <= 0.1f)
+        {
+            if (!audioPostBG.isPlaying) audioPostBG.Play();
+            audioPostBG.volume += Time.fixedDeltaTime * 0.03f; //podria ser editable []
+        }
+
     }
 
     private void RaycastReader()

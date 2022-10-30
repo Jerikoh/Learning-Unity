@@ -127,7 +127,7 @@ public class SoundManager : MonoBehaviour
     public void PlayDeath()
     {
         playerDeath.Play();
-        playerDeathSound.PlayDelayed(2.6f);
+        playerDeathSound.PlayDelayed(2.7f);
     }
 
     public void PlayTrigger()
