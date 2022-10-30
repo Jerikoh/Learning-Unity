@@ -15777,38 +15777,37 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Gracias por jugar la prueba de concepto de Denser Lights!\r\n\r\nEsta
+  m_text: "Gracias por testear la prueba de concepto de Denser Lights!\r\n\r\nEsta
     es una secci\xF3n dedicada a comentarios de desarrollo, observaciones y futuras
     implementaciones.\r\n\r\n\r\n//Sobre la versi\xF3n actual:\r\nEl prop\xF3sito
-    de este build es explorar la mec\xE1nica de \"visi\xF3n de sonar\" en el marco
-    de un horror survival game.\r\nActualmente, la segunda escena no corresponde
-    a la jugabilidad ni narrativa deseadas, siendo una muestra de algunas mec\xE1nicas
-    principales.\r\nNotar\xE1n -entre otras cosas- que la capacidad de apuntar el
-    arma se encuentra limitada (apuntando solo hacia el frente), dado que a\xFAn
-    no ha sido implementada la animaci\xF3n por IK.\r\nEn fin, subestim\xE9 el tiempo
-    que conlleva implementar y pulir cada cosa, tendr\xE1n su momento!\r\n\r\n\r\n//Posibles
-    inspiraciones:\r\nResident Evil 4, Dead Space, Alien Isolation, Outlast, Soma,
-    Contagion, Obscure, Silent Hill 2, The Evil Within, Cry of Fear, Lost in Vivo,
-    Dusk, Nightmare of Decay, Darkwood, The Forest, Half Life, Total Chaos, Divine
-    Frequency, Cultic, Siren, Scanner Sombre, Hidden Deep.\r\n\r\n\r\n//Bugs y defectos
-    conocidos:\r\n- El modelo del cuerpo del player en ocasiones aparece y desaparece.\r\n-
-    Los \"parches negros\" en este mismo texto.\n- Ante algunas colisiones, el jugador
-    sale despedido por el aire y hasta atravieza objetos f\xEDsicos.\r\n- Algunos
-    efectos var\xEDan al pasar del editor al build, a\xFAn usando o no FixedUpdate,
-    deltaTime, etc.\r\n- La IA te detecta a traves de las paredes en un rango peque\xF1o.\r\n-
-    Al realizar ataques melee, se ve parte de la cabeza del avatar.\r\n- Se puede
-    correr hacia los lados y hacia atr\xE1s.\r\n- Sonidos con delay, desincronizados
-    con la acci\xF3n; tambi\xE9n animaciones con acciones.\r\n- Mientras se recarga
-    dejan de sonar las pisadas.\r\n\r\n\r\n//Pr\xF3ximos cambios principales:\r\n-
-    Pulsos de sonar individuales, no cont\xEDnuos; esto habilitar\xEDa a implementar
-    algunas de las propuestas aqu\xED listadas.\r\n- Poder definir manualmente de
-    cada pulso su frecuencia y radio, con sus costes de energ\xEDa y \"overheat\"
-    proporcionales, donde tras cada pulso el dispositivo deba \"enfriarse\" y si
-    se genera antes otro pulso este consumir\xEDa mas energ\xEDa en relacion al grado
-    de sobrecalentamiento.\r\n- Item arrojable que emita pulsos temporalmente en
-    un rango, a modo de flare, que al agotarse su energ\xEDa debas ir a buscarlo
-    y recargarlo -no ser\xEDa descartable como una granada-, asign\xE1ndole energ\xEDa
-    del total de tu reserva.\r\n- Un tipo de proyectil quiz\xE1 para arco/ballesta
+    de este build es explorar la \"visi\xF3n de sonar\" en el marco de un horror
+    survival game.\r\nActualmente, la segunda escena no corresponde a la jugabilidad
+    ni narrativa deseadas, siendo una muestra de algunas mec\xE1nicas principales.\r\nNotar\xE1n
+    -entre otras cosas- que la capacidad de apuntar el arma se encuentra limitada
+    (apuntando solo hacia el frente), ya que a\xFAn no ha sido implementada la animaci\xF3n
+    por IK.\r\nEn fin, subestim\xE9 el tiempo que conlleva implementar y pulir cada
+    cosa, tendr\xE1n su momento!\r\n\r\n\r\n//Posibles inspiraciones:\r\nResident
+    Evil 4, Dead Space, Alien Isolation, Outlast, Soma, Contagion, Obscure, Silent
+    Hill 2, The Evil Within, Cry of Fear, Lost in Vivo, Dusk, Nightmare of Decay,
+    Darkwood, The Forest, Half Life, Left 4 Dead, Total Chaos, Divine Frequency,
+    Cultic, Siren, Scanner Sombre, Hidden Deep.\r\n\r\n\r\n//Bugs y defectos conocidos:\r\n-
+    El modelo del cuerpo del player en ocasiones aparece y desaparece.\r\n- Ante
+    algunas colisiones, el jugador sale despedido por el aire y hasta atravieza objetos
+    f\xEDsicos.\r\n- Algunos efectos y posiciones var\xEDan al pasar del editor al
+    build (FixedUpdate y fixedDeltaTime a todo relacionado?).\r\n- La IA te detecta
+    a traves de las paredes en un rango peque\xF1o.\r\n- Al realizar ataques melee,
+    se ve parte de la cabeza del avatar.\r\n- Se puede correr hacia los lados y hacia
+    atr\xE1s.\r\n- Sonidos con delay, desincronizados con la acci\xF3n; tambi\xE9n
+    animaciones con acciones.\r\n- Mientras se recarga dejan de sonar las pisadas.\r\n\r\n\r\n//Pr\xF3ximos
+    cambios principales:\r\n- Pulsos de sonar individuales, no cont\xEDnuos; esto
+    habilitar\xEDa a implementar algunas de las propuestas aqu\xED listadas.\r\n-
+    Poder definir manualmente de cada pulso su frecuencia y radio, con sus costes
+    de energ\xEDa y \"overheat\" proporcionales, donde tras cada pulso el dispositivo
+    deba \"enfriarse\" y si se genera antes otro pulso este consumir\xEDa mas energ\xEDa
+    en relacion al grado de sobrecalentamiento.\r\n- Item arrojable que emita pulsos
+    temporalmente en un rango, a modo de flare, que al agotarse su energ\xEDa debas
+    ir a buscarlo y recargarlo -no ser\xEDa descartable como una granada-, asign\xE1ndole
+    energ\xEDa del total de tu reserva.\r\n- Un tipo de proyectil quiz\xE1 para arco/ballesta
     que revele su recorrido tras disparar, al emitir pulsos r\xE1pidamente en el
     trayecto (en una distancia finita).\r\n- Capacidades de agacharse y asomarse
     ante paredes, estados que afectar\xEDan la capacidad de detecci\xF3n enemiga
@@ -15893,7 +15892,9 @@ MonoBehaviour:
     delay de reproducci\xF3n? lo dudo //mismo caso para los \"dialog triggers\"\r\n-
     Enemy ragdolls.\r\n- Cambiar o pulir varios sonidos y animaciones.\r\n- Hay cierto
     retraso en la reproducci\xF3n de los sonidos, deber\xEDa ver como evitarlo.\r\n-
-    Da\xF1o por sangrado, mayor o menor seg\xFAn el enemigo.\r\n- Turning animations.\r\n\r\n\r\n//Optimizaciones
+    Da\xF1o por sangrado, mayor o menor seg\xFAn el enemigo.\r\n- Turning animations.\r\n-
+    Deber\xEDa haber una cola para la aparici\xF3n de di\xE1logos (y un nivel de
+    prioridad), para que no se superpongan al instanciarse.\r\n\r\n\r\n//Optimizaciones
     a implementar:\r\n- Homogeneizar texturas, ya que son innecesarias al ser invisibles.\r\n-
     Quitar produccion de sombras e iluminaci\xF3n.\r\n- Implementar occlusion culling.\r\n-
     Convertir en mp3 todos los archivos de audio.\r\n- Rehacer el \"spaghetti code\";
@@ -15904,7 +15905,7 @@ MonoBehaviour:
     Eliminar partes no visibles del mapa.\r\n- Hacer el \"audio footstep manager\"
     todo en uno y no en scripts separados, evitando invocar eventos innecesariamente.
     //aunque dudo que tenga un impacto significativo\r\n\r\n\r\nEstoy abierto a nuevas
-    ideas y proyectos!: jerebizai@gmail.com\n\n\n\n\n\n\n"
+    ideas y proyectos!: jerebizai@gmail.com\n\n\n\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d186f705b077b646adad14b6b3ce719, type: 2}
   m_sharedMaterial: {fileID: 3127148747690780588, guid: 1d186f705b077b646adad14b6b3ce719, type: 2}

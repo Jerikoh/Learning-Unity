@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        canMove = false;
         //inicializando los componentes y variables...
         hasAnimator = TryGetComponent<Animator>(out animator);
         playerRigidbody = GetComponent<Rigidbody>();

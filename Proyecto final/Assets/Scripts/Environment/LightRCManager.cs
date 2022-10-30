@@ -44,7 +44,7 @@ public class LightRCManager : MonoBehaviour
             audioRegularBG.volume -= Time.fixedDeltaTime * 0.1f; //podria ser editable []
         }
 
-        if (allDead && audioPostBG.volume < 0.55f)
+        if (allDead && flag5 && audioPostBG.volume < 0.55f)
         {
             audioPostBG.Play();
             audioPostBG.volume += Time.fixedDeltaTime * 0.1f; //podria ser editable []

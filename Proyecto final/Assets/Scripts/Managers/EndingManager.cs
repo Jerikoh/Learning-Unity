@@ -19,7 +19,8 @@ public class EndingManager : MonoBehaviour
     [SerializeField][Range(0f, 2f)] float powerFallSpeed = 0.02f;
     [SerializeField][Range(0f, 2f)] float volumeFallSpeed = 0.02f;
     [SerializeField][Range(-1f, 0f)] float startinOphanimPower = -0.2f;
-    [SerializeField][Range(-1f, 0f)] float finalOphanimPower = -0.7f;
+    [SerializeField][Range(-10f, 0f)] float finalOphanimPower = -5f;
+    bool startEnd = false;
     bool startFade = false;
 
     void Start()
@@ -30,20 +31,28 @@ public class EndingManager : MonoBehaviour
         regBlendPlayerSonar = pulsePlayerSonar.GetFloat("_MultiplyBlend");
         regBlendOphanim = pulseOphanim.GetFloat("_MultiplyBlend");
         regPowerOphanim = pulseOphanim.GetFloat("_Power");
+
+        pulseOphanim.SetFloat("_Power", startinOphanimPower);
     }
 
     void FixedUpdate()
     {
         //"bajando" constante
-        if (pulsePlayerSonar.GetFloat("_MultiplyBlend") < 1f)
+        if (startEnd && pulsePlayerSonar.GetFloat("_MultiplyBlend") < 1f)
         {
-            pulsePlayerSonar.SetFloat("_MultiplyBlend", pulsePlayerSonar.GetFloat("_MultiplyBlend") + Time.fixedDeltaTime * blendRiseSpeed);
+            pulsePlayerSonar.SetFloat("_MultiplyBlend", pulsePlayerSonar.GetFloat("_MultiplyBlend") + Time.fixedDeltaTime * 0.1f);
         }
 
         //"subiendo" ophanim
-        if (pulseOphanim.GetFloat("_Power") > finalOphanimPower)
+        if (startEnd && pulseOphanim.GetFloat("_Power") > finalOphanimPower)
         {
             pulseOphanim.SetFloat("_Power", pulseOphanim.GetFloat("_Power") - Time.fixedDeltaTime * powerFallSpeed);
+        }
+
+        if (pulseOphanim.GetFloat("_Power") <= finalOphanimPower)
+        {
+            startEnd = false;
+            startFade = true;
         }
 
         //iniciando desvanecimiento total
@@ -90,7 +99,7 @@ public class EndingManager : MonoBehaviour
         hatchetGO.SetActive(false);
         playerAnimator.SetTrigger("Start Praying");
         audioWind.Play();
-        pulseOphanim.SetFloat("_Power", startinOphanimPower);
+        startEnd = true;
     }
 
     void SceneLoader()
